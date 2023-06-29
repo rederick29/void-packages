@@ -1,0 +1,22 @@
+# Template file for 'rocm-llvm'
+pkgname=rocm-llvm
+version=5.5.0
+revision=1
+archs="x86_64"
+build_style=cmake
+configure_args="-B . -S ../llvm -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX='/opt/rocm/llvm' -DCMAKE_INSTALL_LIBDIR=lib -DLLVM_HOST_TRIPLE=x86_64-unknown-linux-gnu -DLLVM_ENABLE_PROJECTS='llvm;clang;compiler-rt;lld;clang-tools-extra' -DLLVM_TARGETS_TO_BUILD='AMDGPU;X86' -DCLANG_DEFAULT_LINKER=lld -DLLVM_INSTALL_UTILS=ON -DLLVM_ENABLE_ZLIB=ON -DLLVM_ENABLE_ASSERTIONS=ON -DOCAMLFIND=NO -DLLVM_ENABLE_OCAMLDOC=OFF -DLLVM_INCLUDE_BENCHMARKS=OFF -DLLVM_BUILD_DOCS=NO -DLLVM_ENABLE_SPHINX=NO -DLLVM_ENABLE_DOXYGEN=OFF -DLLVM_PARALLEL_COMPILE_JOBS=${XBPS_MAKEJOBS} -DCLANG_ENABLE_AMDCLANG=ON -DLLVM_ENABLE_RUNTIMES=libcxx;libcxxabi -DLIBCXX_ENABLE_STATIC=ON -DLIBCXXABI_ENABLE_STATIC=ON"
+hostmakedepends="python3 perl"
+makedepends="zlib-devel"
+depends="ROCm-core"
+short_desc="Radeon Open Compute LLVM toolchain"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="Apache-2.0 WITH LLVM-exception"
+homepage="https://github.com/RadeonOpenCompute/llvm-project"
+distfiles="https://github.com/RadeonOpenCompute/llvm-project/archive/rocm-${version}.tar.gz"
+checksum=5dc6c99f612b69ff73145bee17524e3712990100e16445b71634106acf7927cf
+python_version=3
+nocross=yes
+
+post_install() {
+	vlicense llvm/LICENSE.TXT
+}

@@ -1,0 +1,29 @@
+# Template file for 'MIOpen'
+pkgname=MIOpen
+version=5.5.0
+revision=1
+archs="x86_64"
+build_style=cmake
+configure_args="-DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++ -DCMAKE_LINKER=/opt/rocm/llvm/bin/ld.lld -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_BUILD_TYPE=Release -DMIOPEN_BACKEND=HIP -DMIOPEN_USE_MIOPENGEMM=ON -DBoost_USE_STATIC_LIBS=OFF  -DAMDGPU_TARGETS=$(vopt_if gfx803 'gfx803;')$(vopt_if gfx900 'gfx900;')$(vopt_if gfx906 'gfx906;')$(vopt_if gfx908 'gfx908;')$(vopt_if gfx90a 'gfx90a;')$(vopt_if gfx1010 'gfx1010;')$(vopt_if gfx1011 'gfx1011;')$(vopt_if gfx1012 'gfx1012;')$(vopt_if gfx1030 'gfx1030;')$(vopt_if gfx1031 'gfx1031;')$(vopt_if gfx1100 'gfx1100;')$(vopt_if gfx1101 'gfx1101;')$(vopt_if gfx1102 'gfx1102;')"
+hostmakedepends="rocm-llvm hipamd git pkg-config"
+makedepends="rocMLIR ROCm-Device-Libs rocBLAS MIOpenGEMM rocm-cmake half boost-devel sqlite-devel ROCm-composable_kernel json-c++ bzip2 bzip2-devel zlib zlib-devel opencl2-headers"
+depends="ROCm-core"
+short_desc="AMD's Machine Intelligence Library for ROCm"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="MIT"
+homepage="https://github.com/ROCmSoftwarePlatform/MIOpen"
+changelog="https://github.com/ROCmSoftwarePlatform/MIOpen/raw/develop/CHANGELOG.md"
+distfiles="https://github.com/ROCmSoftwarePlatform/MIOpen/archive/rocm-${version}.tar.gz"
+checksum=791087242551669e546225e36123c21663f0dad14dbcfd6d0ce0e7bad0ab0de1
+LDFLAGS=-L/opt/rocm/lib
+CFLAGS="${CFLAGS} -Wno-documentation -Wno-deprecated-declarations"
+CXXFLAGS="${CXXFLAGS} -Wno-documentation -Wno-deprecated-declarations"
+
+# GPU architectures to build for
+build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+build_options_default="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+post_install() {
+	vlicense LICENSE.txt
+}

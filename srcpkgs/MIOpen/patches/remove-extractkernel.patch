@@ -1,0 +1,41 @@
+# https://github.com/ROCmSoftwarePlatform/MIOpen/pull/2075
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 5659254589..2d4ca93365 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -306,23 +306,7 @@ if(MIOPEN_OFFLOADBUNDLER_BIN)
+     message(STATUS "clang-offload-bundler found: ${MIOPEN_OFFLOADBUNDLER_BIN}")
+     set(MIOPEN_OFFLOADBUNDLER_BIN "${MIOPEN_OFFLOADBUNDLER_BIN}")
+ else()
+-    # look for and register extractkernel
+     message(STATUS "clang-offload-bundler not found")
+-
+-    find_program(EXTRACTKERNEL_BIN extractkernel
+-        PATH_SUFFIXES bin
+-        PATHS
+-            /opt/rocm/hip
+-            /opt/rocm
+-            ${CMAKE_INSTALL_PREFIX}/hip
+-            ${CMAKE_INSTALL_PREFIX}
+-    )
+-    if(EXTRACTKERNEL_BIN)
+-        message(STATUS "extractkernel found: ${EXTRACTKERNEL_BIN}")
+-        set(EXTRACTKERNEL_BIN "${EXTRACTKERNEL_BIN}")
+-    else()
+-        message(FATAL_ERROR "extractkernel not found")
+-    endif()
+ endif()
+
+ set_var_to_condition(MIOPEN_USE_MLIR_DEFAULT NOT (NOT ${BUILD_SHARED_LIBS} AND ${MIOPEN_USE_COMGR}))
+diff --git a/include/miopen/config.h.in b/include/miopen/config.h.in
+index be28f979d5..0030ac4f5a 100644
+--- a/include/miopen/config.h.in
++++ b/include/miopen/config.h.in
+@@ -79,7 +79,6 @@
+ #cmakedefine MIOPEN_AMDGCN_ASSEMBLER "@MIOPEN_AMDGCN_ASSEMBLER@"
+ #cmakedefine HIP_OC_COMPILER "@HIP_OC_COMPILER@"
+ #cmakedefine MIOPEN_HIP_COMPILER "@MIOPEN_HIP_COMPILER@"
+-#cmakedefine EXTRACTKERNEL_BIN "@EXTRACTKERNEL_BIN@"
+ #cmakedefine MIOPEN_OFFLOADBUNDLER_BIN "@MIOPEN_OFFLOADBUNDLER_BIN@"
+ #cmakedefine MIOPEN_CACHE_DIR "@MIOPEN_CACHE_DIR@"
+

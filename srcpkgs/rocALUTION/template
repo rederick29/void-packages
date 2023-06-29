@@ -1,0 +1,26 @@
+# Template file for 'rocALUTION'
+pkgname=rocALUTION
+version=5.5.0
+revision=1
+archs="x86_64"
+build_style=cmake
+configure_args="-DHIP_CLANG_PATH=/opt/rocm/llvm/bin -DCMAKE_CXX_COMPILER=/opt/rocm/bin/hipcc -DCMAKE_INSTALL_PREFIX=/opt/rocm -DBUILD_CLIENTS_SAMPLES=OFF -DCMAKE_BUILD_TYPE=Release -DSUPPORT_HIP=ON -DBUILD_SHARED_LIBS=ON -DROCM_PATH=/opt/rocm -DHIP_ROOT_DIR=/opt/rocm/hip -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_PREFIX_PATH=/opt/rocm -DCMAKE_MODULE_PATH=/opt/rocm"
+hostmakedepends="hipamd rocm-llvm"
+makedepends="rocm-cmake ROCm-Device-Libs rocBLAS rocSPARSE rocPRIM rocRAND rocm-llvm-openmp"
+depends="ROCm-core rocm-llvm-openmp libstdc++ libgcc rocBLAS rocSPARSE rocRAND hipamd"
+short_desc="Next generation library for iterative sparse solvers for ROCm"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="MIT"
+homepage="https://github.com/ROCmSoftwarePlatform/rocALUTION"
+changelog="https://github.com/ROCmSoftwarePlatform/rocALUTION/raw/develop/CHANGELOG.md"
+distfiles="https://github.com/ROCmSoftwarePlatform/rocALUTION/archive/rocm-${version}.tar.gz"
+checksum=626e966b67b83a1ef79f9bf27aba998c49cf65c4208092516aa1e32a6cbd8c36
+noverifyrdeps=yes
+LDFLAGS=-L/opt/rocm/lib
+
+CFLAGS="${CFLAGS} -Wno-#warnings -Wno-deprecated-declarations"
+CXXFLAGS="${CXXFLAGS} -Wno-#warnings -Wno-deprecated-declarations"
+
+post_install() {
+	vlicense LICENSE.md
+}

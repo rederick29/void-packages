@@ -1,0 +1,27 @@
+# Template file for 'rccl'
+pkgname=rccl
+version=5.5.0
+revision=1
+archs="x86_64"
+build_style=cmake
+configure_args="-Wno-dev -DCMAKE_CXX_COMPILER=/opt/rocm/bin/hipcc -DCMAKE_C_COMPILER=/opt/rocm/bin/hipcc -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON -DAMDGPU_TARGETS=$(vopt_if gfx803 'gfx803;')$(vopt_if gfx900 'gfx900;')$(vopt_if gfx906 'gfx906;')$(vopt_if gfx908 'gfx908;')$(vopt_if gfx90a 'gfx90a;')$(vopt_if gfx1010 'gfx1010;')$(vopt_if gfx1011 'gfx1011;')$(vopt_if gfx1012 'gfx1012;')$(vopt_if gfx1030 'gfx1030;')$(vopt_if gfx1031 'gfx1031;')$(vopt_if gfx1100 'gfx1100;')$(vopt_if gfx1101 'gfx1101;')$(vopt_if gfx1102 'gfx1102;')"
+hostmakedepends="hipamd HIPIFY"
+makedepends="rocm-cmake ROCm-Device-Libs rocm_smi_lib"
+depends="ROCm-core"
+short_desc="ROCm Communication Collectives Library"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="custom:Proprietary"
+homepage="https://github.com/ROCmSoftwarePlatform/rccl"
+changelog="https://github.com/ROCmSoftwarePlatform/rccl/raw/develop/CHANGELOG.md"
+distfiles="https://github.com/ROCmSoftwarePlatform/rccl/archive/rocm-${version}.tar.gz"
+checksum=be2964b408741d046bcd606d339a233d1d1deac7b841647ec53d6d62d71452ba
+LDFLAGS=-L/opt/rocm/lib64
+
+# GPU architectures to build for
+build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+build_options_default="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+post_install() {
+	vlicense LICENSE.txt
+}

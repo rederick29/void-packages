@@ -1,0 +1,26 @@
+# Template file for 'rocprofiler'
+pkgname=rocprofiler
+version=5.5.0
+revision=1
+archs="x86_64"
+build_style=cmake
+configure_args="-DHIP_CLANG_PATH=/opt/rocm/llvm/bin -DUSE_PROF_API=1 -DPROF_API_HEADER_PATH=/opt/rocm/roctracer/include/ext -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++ -DCMAKE_PREFIX_PATH=/opt/rocm/include/hsa:/opt/rocm -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/rocm -DHIP_ROOT_DIR=/opt/rocm/hip -DCMAKE_MODULE_PATH=/opt/rocm/hip/cmake -DCMAKE_INSTALL_LIBDIR=lib -DGPU_TARGETS=$(vopt_if gfx803 'gfx803 ')$(vopt_if gfx900 'gfx900 ')$(vopt_if gfx906 'gfx906 ')$(vopt_if gfx908 'gfx908 ')$(vopt_if gfx90a 'gfx90a ')$(vopt_if gfx1010 'gfx1010 ')$(vopt_if gfx1011 'gfx1011 ')$(vopt_if gfx1012 'gfx1012 ')$(vopt_if gfx1030 'gfx1030 ')$(vopt_if gfx1031 'gfx1031 ')$(vopt_if gfx1100 'gfx1100 ')$(vopt_if gfx1101 'gfx1101 ')$(vopt_if gfx1102 'gfx1102')"
+hostmakedepends="hipamd python3"
+makedepends="roctracer ROCdbgapi ROCm-Device-Libs rocm-llvm python3-lxml python3-CppHeaderParser libpciaccess-devel hsa-amd-aqlprofile-bin elfutils-devel zlib zlib-devel python3-yaml python3-barectf python3-setuptools libatomic libatomic-devel"
+depends="ROCm-core"
+short_desc="ROC profiler library"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="MIT"
+homepage="https://github.com/ROCm-Developer-Tools/rocprofiler"
+distfiles="https://github.com/ROCm-Developer-Tools/rocprofiler/archive/rocm-${version}.tar.gz"
+checksum=d9dd38c42b4b12d4149f1cc3fca1af5bec69c72f455653a8f4fd8195b3b95703
+
+CXXFLAGS="${CXXFLAGS} -Wno-non-c-typedef-for-linkage -Wno-missing-braces -Wno-unused-variable -Wno-unused-function -Wno-sometimes-uninitialized -Wno-unused-private-field -Wno-#warnings"
+
+build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+build_options_default="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+post_install() {
+	vlicense LICENSE
+}

@@ -1,0 +1,18 @@
+# Template file for 'MIOpenGEMM'
+pkgname=MIOpenGEMM
+version=5.5.0
+revision=1
+archs="x86_64"
+build_style=cmake
+configure_args="-Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_INSTALL_LIBDIR=lib"
+makedepends="opencl2-headers ocl-icd rocm-cmake"
+short_desc="OpenCL GEMM kernel generator"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="MIT"
+homepage="https://github.com/ROCmSoftwarePlatform/MIOpenGEMM"
+distfiles="https://github.com/ROCmSoftwarePlatform/MIOpenGEMM/archive/rocm-${version}.tar.gz"
+checksum=ffd9775129564662b338952588057a088f7e9723b4a9a766b2dd96fdc0992c26
+
+post_install() {
+	vlicense LICENSE.txt
+}

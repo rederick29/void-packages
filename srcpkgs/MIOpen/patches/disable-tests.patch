@@ -1,0 +1,15 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 4dcaee512..3451a2e37 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -795,7 +795,6 @@ add_subdirectory(src)
+ if(MIOPEN_BUILD_DRIVER)
+     add_subdirectory(driver)
+ endif()
+-add_subdirectory(test)
+ add_subdirectory(speedtests)
+ add_subdirectory(utils)
+ if(MIOPEN_ENABLE_FIN)
+--
+2.40.1
+

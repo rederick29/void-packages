@@ -1,0 +1,18 @@
+# Template file for 'rocm-cmake'
+pkgname=rocm-cmake
+version=5.5.0
+revision=1
+archs="x86_64"
+wrksrc="${pkgname}-rocm-${version}"
+build_style=cmake
+configure_args="-DCMAKE_INSTALL_PREFIX=/opt/rocm"
+hostmakedepends=""
+makedepends=""
+depends="ROCm-core"
+short_desc="CMake modules for common build tasks needed for the ROCm software stack"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="MIT"
+homepage="https://github.com/RadeonOpenCompute/rocm-cmake"
+changelog="https://github.com/RadeonOpenCompute/rocm-cmake/blob/develop/CHANGELOG.md"
+distfiles="https://github.com/RadeonOpenCompute/rocm-cmake/archive/rocm-${version}.tar.gz"
+checksum=b7884c346737eba70ae11044e41598b2482a92e21f3e0719b1ca11619f02a20b

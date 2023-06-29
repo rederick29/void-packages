@@ -1,0 +1,28 @@
+# Template file for 'rocm-llvm-openmp'
+pkgname=rocm-llvm-openmp
+version=5.5.0
+revision=1
+archs="x86_64"
+build_style=cmake
+configure_args="-B . -S ../llvm-project-rocm-${version}/openmp -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++ -DOPENMP_ENABLE_LIBOMPTARGET=1 -DCMAKE_INSTALL_PREFIX=/opt/rocm/llvm -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_PREFIX_PATH=/opt/rocm -DLIBOMP_COPY_EXPORTS=OFF -DDEVICELIBS_ROOT=/builddir/${pkgname}-${version}/ROCm-Device-Libs-rocm-${version}/ -DLLVM_DIR=/opt/rocm/llvm -DLLVM_MAIN_INCLUDE_DIR=/builddir/${pkgname}-${version}/llvm-project-rocm-${version}/llvm/include -DLIBOMPTARGET_LLVM_INCLUDE_DIRS=/builddir/${pkgname}-${version}/llvm-project-rocm-${version}/llvm/include -DLIBOMPTARGET_ENABLE_DEBUG=ON -DCMAKE_BUILD_TYPE=Release -DLIBOMPTARGET_AMDGCN_GFXLIST=$(vopt_if gfx803 'gfx803;')$(vopt_if gfx900 'gfx900;')$(vopt_if gfx906 'gfx906;')$(vopt_if gfx908 'gfx908;')$(vopt_if gfx90a 'gfx90a;')$(vopt_if gfx1010 'gfx1010;')$(vopt_if gfx1011 'gfx1011;')$(vopt_if gfx1012 'gfx1012;')$(vopt_if gfx1030 'gfx1030;')$(vopt_if gfx1031 'gfx1031;')$(vopt_if gfx1100 'gfx1100;')$(vopt_if gfx1101 'gfx1101;')$(vopt_if gfx1102 'gfx1102;')"
+hostmakedepends="rocm-llvm python3 perl"
+makedepends="python3-devel zlib zlib-devel libffi libffi-devel pkg-config ROCm-Device-Libs rocm-cmake ROCR-Runtime"
+depends="ROCm-core"
+short_desc="LLVM OpenMP support library for ROCm"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="Apache-2.0 WITH LLVM-exception"
+homepage="https://github.com/RadeonOpenCompute/llvm-project"
+distfiles="https://github.com/RadeonOpenCompute/llvm-project/archive/rocm-${version}.tar.gz>rocm-llvm.tar.gz
+https://github.com/RadeonOpenCompute/ROCm-Device-Libs/archive/rocm-${version}.tar.gz>rocm-device-libs.tar.gz"
+checksum="5dc6c99f612b69ff73145bee17524e3712990100e16445b71634106acf7927cf
+5ab95aeb9c8bed0514f96f7847e21e165ed901ed826cdc9382c14d199cbadbd3"
+# Build fails without this :/
+nopie=yes
+
+build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+build_options_default="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+post_install() {
+	vlicense llvm-project-rocm-${version}/openmp/LICENSE.TXT
+}

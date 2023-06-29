@@ -1,0 +1,16 @@
+# Template file for 'half'
+pkgname=half
+version=2.2.0
+revision=1
+short_desc="Half-precision floating-point library"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="MIT"
+homepage="https://half.sourceforge.net/"
+changelog="https://half.sourceforge.net/changelog.html"
+distfiles="${SOURCEFORGE_SITE}/project/half/half/${version}/half-${version}.zip"
+checksum=1d1d9e482fb95fcd7cab0953a4bd35e00b86578f11cb6939a067811a055a563b
+
+do_install() {
+	vcopy include usr/include
+	vlicense LICENSE.txt
+}

@@ -1,0 +1,46 @@
+# Template file for 'rocRAND'
+pkgname=rocRAND
+version=5.5.0
+revision=1
+_hiprand_commit=8babdbe0cf4dc330c9ec5a0231ac059187a7bc8a
+archs="x86_64"
+build_style=cmake
+configure_args="-B . -S ../rocRAND-rocm-${version} -DCMAKE_CXX_COMPILER=/opt/rocm/hip/bin/hipcc -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_INSTALL_LIBDIR=lib -DAMDGPU_TARGETS=$(vopt_if gfx803 'gfx803;')$(vopt_if gfx900 'gfx900;')$(vopt_if gfx906 'gfx906;')$(vopt_if gfx908 'gfx908;')$(vopt_if gfx90a 'gfx90a;')$(vopt_if gfx1010 'gfx1010;')$(vopt_if gfx1011 'gfx1011;')$(vopt_if gfx1012 'gfx1012;')$(vopt_if gfx1030 'gfx1030;')$(vopt_if gfx1031 'gfx1031;')$(vopt_if gfx1100 'gfx1100;')$(vopt_if gfx1101 'gfx1101;')$(vopt_if gfx1102 'gfx1102;')"
+hostmakedepends="hipamd perl rocm-llvm git"
+makedepends="ROCm-Device-Libs rocm-cmake"
+depends="ROCm-core"
+short_desc="Pseudo-random and quasi-random number generator for ROCm"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="MIT"
+homepage="https://github.com/ROCmSoftwarePlatform/rocRAND"
+changelog="https://github.com/ROCmSoftwarePlatform/rocRAND/raw/develop/CHANGELOG.md"
+distfiles="https://github.com/ROCmSoftwarePlatform/rocRAND/archive/rocm-${version}.tar.gz>rocrand.tar.gz
+https://github.com/ROCmSoftwarePlatform/hipRAND/archive/${_hiprand_commit}.tar.gz>hiprand.tar.gz"
+checksum="0481e7ef74c181026487a532d1c17e62dd468e508106edde0279ca1adeee6f9a
+7943ff0bcec20307c6555c786272ecabf09305ceb0b9351db2c0f6f22a65ad9b"
+LDFLAGS=-L/opt/rocm/lib
+
+build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+build_options_default="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+pre_configure() {
+	_target_dir=${wrksrc}/rocRAND-rocm-${version}/hipRAND
+	# Remove empty hipRAND dir (or symlink) if it exists
+	if [ -d ${_target_dir} ]; then
+		if [ -L ${_target_dir} ]; then
+			rm ${_target_dir}
+		else
+			rmdir ${_target_dir}
+		fi
+	fi
+
+	ln -s ../hipRAND-${_hiprand_commit} ${_target_dir}
+}
+
+post_install() {
+	cd rocRAND-rocm-${version}
+	vlicense LICENSE.txt LICENSE-rocRAND
+	cd ../hipRAND-${_hiprand_commit}
+	vlicense LICENSE.txt LICENSE-hipRAND
+}

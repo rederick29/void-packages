@@ -1,0 +1,55 @@
+# Template file for 'rocBLAS'
+pkgname=rocBLAS
+version=5.5.0
+revision=1
+archs="x86_64"
+build_style=cmake
+configure_args="-B .
+				-S ../rocBLAS-rocm-${version}
+				-DCMAKE_CXX_COMPILER=/opt/rocm/bin/hipcc
+				-DCMAKE_C_COMPILER=/opt/rocm/bin/hipcc
+				-DCMAKE_INSTALL_PREFIX=/opt/rocm
+				-DCMAKE_INSTALL_LIBDIR=lib
+				-DCMAKE_PREFIX_PATH=/opt/rocm/llvm/lib/cmake/llvm
+				-Damd_comgr_DIR=/opt/rocm/lib/cmake/amd_comgr
+				-DBUILD_WITH_TENSILE=ON
+				-DTensile_CPU_THREADS=${XBPS_MAKEJOBS}
+				-DTensile_LIBRARY_FORMAT=msgpack
+				-DTensile_COMPILER=hipcc
+				-DTensile_TEST_LOCAL_PATH=../Tensile-rocm-${version}
+				-DAMDGPU_TARGETS=$(vopt_if gfx803 'gfx803;')$(vopt_if gfx900 'gfx900;')$(vopt_if gfx906 'gfx906;')$(vopt_if gfx908 'gfx908;')$(vopt_if gfx90a 'gfx90a;')$(vopt_if gfx1010 'gfx1010;')$(vopt_if gfx1011 'gfx1011;')$(vopt_if gfx1012 'gfx1012;')$(vopt_if gfx1030 'gfx1030;')$(vopt_if gfx1031 'gfx1031;')$(vopt_if gfx1100 'gfx1100;')$(vopt_if gfx1101 'gfx1101;')$(vopt_if gfx1102 'gfx1102;')"
+hostmakedepends="hipamd rocm-llvm perl python3"
+makedepends="ROCm-Device-Libs ROCm-CompilerSupport msgpack-cxx msgpack-devel python3-msgpack python3-yaml"
+depends="ROCm-core"
+short_desc="BLAS implementation for ROCm platform with Tensile"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="MIT"
+homepage="https://github.com/ROCmSoftwarePlatform/rocBLAS"
+changelog="https://github.com/ROCmSoftwarePlatform/rocBLAS/raw/develop/CHANGELOG.md"
+distfiles="https://github.com/ROCmSoftwarePlatform/rocBLAS/archive/rocm-${version}.tar.gz>rocblas.tar.gz
+https://github.com/ROCmSoftwarePlatform/Tensile/archive/rocm-${version}.tar.gz>tensile.tar.gz"
+checksum="b5260517f199e806ae18f2c4495f163884e0d7a0a7c67af0770f7428ea50f898
+70fd736d40bb4c3461f07c77ad3ae6c485e3e842671ce9b223d023d836884ae2"
+
+# Needed for hipcc to find libamdhip64
+LDFLAGS=-L/opt/rocm/lib
+# Needed for tensile to find hipcc
+PATH="/opt/rocm/bin:/opt/rocm/llvm/bin:${PATH}"
+# Suppres some warnings
+CFLAGS="${CFLAGS} -Wno-deprecated-declarations"
+CXXFLAGS="${CXXFLAGS} -Wno-deprecated-declarations"
+
+# xbps-src attempts to strip GPU library and fails
+nostrip=true
+
+# GPU architectures to build for
+build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+build_options_default="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+post_install() {
+	cd rocBLAS-rocm-${version}
+	vlicense LICENSE.md LICENSE-rocBLAS.md
+	cd ../Tensile-rocm-${version}
+	vlicense LICENSE.md LICENSE-Tensile.md
+}

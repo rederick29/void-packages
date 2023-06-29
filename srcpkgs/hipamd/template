@@ -1,0 +1,34 @@
+# Template file for 'hipamd'
+pkgname=hipamd
+version=5.5.0
+revision=1
+archs="x86_64"
+build_style=cmake
+configure_args="-Wno-dev -B . -S ../hipamd-rocm-${version} -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++ -DCMAKE_LINKER=/opt/rocm/llvm/bin/ld.lld -DLLVM_DIR=/opt/rocm/llvm/lib/cmake/llvm -DHIP_COMMON_DIR=/builddir/${pkgname}-${version}/HIP-rocm-${version} -DAMD_OPENCL_PATH=/builddir/${pkgname}-${version}/ROCm-OpenCL-Runtime-rocm-${version} -DROCCLR_PATH=/builddir/${pkgname}-${version}/ROCclr-rocm-${version} -DHIP_PLATFORM=amd -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_INSTALL_LIBDIR=lib -DAMDGPU_TARGETS=$(vopt_if gfx803 'gfx803;')$(vopt_if gfx900 'gfx900;')$(vopt_if gfx906 'gfx906;')$(vopt_if gfx908 'gfx908;')$(vopt_if gfx90a 'gfx90a;')$(vopt_if gfx1010 'gfx1010;')$(vopt_if gfx1011 'gfx1011;')$(vopt_if gfx1012 'gfx1012;')$(vopt_if gfx1030 'gfx1030;')$(vopt_if gfx1031 'gfx1031;')$(vopt_if gfx1100 'gfx1100;')$(vopt_if gfx1101 'gfx1101;')$(vopt_if gfx1102 'gfx1102;')"
+hostmakedepends="perl rocm-llvm libnuma python3"
+makedepends="rocm-cmake zlib-devel ROCm-CompilerSupport ROCR-Runtime libnuma-devel python3-CppHeaderParser libglvnd-devel"
+depends="rocm-llvm perl rocminfo ROCm-core ROCm-Device-Libs"
+short_desc="Heterogeneous Interface for Portability ROCm"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="MIT"
+homepage="https://github.com/ROCm-Developer-Tools/HIP"
+distfiles="https://github.com/ROCm-Developer-Tools/HIP/archive/rocm-${version}.tar.gz>hip.tar.gz
+https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/archive/rocm-${version}.tar.gz>ocl.tar.gz
+https://github.com/ROCm-Developer-Tools/ROCclr/archive/rocm-${version}.tar.gz>rocclr.tar.gz
+https://github.com/ROCm-Developer-Tools/hipamd/archive/rocm-${version}.tar.gz>hipamd.tar.gz"
+checksum="5b0d0253e62f85cc21d043513f7c11c64e4a4ec416159668f0b160d732d09a3c
+0df9fa0b8aa0c8e6711d34eec0fdf1ed356adcd9625bc8f1ce9b3e72090f3e4f
+efbae9a1ef2ab3de5ca44091e9bb78522e76759c43524c1349114f9596cc61d1
+bf87ed3919987c1a3a3f293418d26b65b3f02b97464e48f0cfcdd8f35763a0b7"
+python_version=3
+
+build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+build_options_default="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+post_install() {
+	cd HIP-rocm-${version}
+	vlicense LICENSE.txt LICENSE-HIP
+	cd ../hipamd-rocm-${version}
+	vlicense LICENSE.txt LICENSE-HIPAMD
+}

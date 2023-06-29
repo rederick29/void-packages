@@ -1,0 +1,23 @@
+# Template file for 'python3-barectf'
+pkgname=python3-barectf
+version=3.1.2
+revision=1
+build_style=python3-module
+hostmakedepends="python3-setuptools python3-build python3-installer"
+makedepends="python3-poetry-core python3-termcolor python3-yaml python3-jsonschema python3-Jinja2 python3-wheel"
+depends="python3-termcolor python3-yaml python3-jsonschema python3-Jinja2"
+short_desc="Generator of ANSI C tracers which output CTF data streams"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="MIT"
+homepage="https://github.com/efficios/barectf/"
+distfiles="https://github.com/efficios/barectf/archive/v${version}.tar.gz"
+checksum=bad30bee4370408a101e6cca7af325cf9875e1a1a0fd712219603f44ac2e7ec8
+
+do_build() {
+	python -m build --wheel --no-isolation
+}
+
+do_install() {
+	python -m installer --destdir=${DESTDIR} dist/*.whl
+	vlicense LICENSE
+}

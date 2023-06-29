@@ -1,0 +1,19 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 2743765..f9150bb 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -53,11 +53,6 @@ endif()
+ ## Build libraries
+ add_subdirectory(src)
+
+-## Build tests
+-if(${LIBRARY_TYPE} STREQUAL SHARED)
+-  add_subdirectory(test)
+-endif()
+-
+ ## Build Plugins
+ add_subdirectory(plugin)
+
+--
+2.40.1
+

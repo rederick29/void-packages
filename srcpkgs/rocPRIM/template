@@ -1,0 +1,25 @@
+# Template file for 'rocPRIM'
+pkgname=rocPRIM
+version=5.5.0
+revision=1
+archs="x86_64"
+build_style=cmake
+configure_args="-DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_CXX_COMPILER=/opt/rocm/bin/hipcc -Damd_comgr_DIR=/opt/rocm/lib/cmake/amd_comgr -DCMAKE_INSTALL_LIBDIR=lib -DAMDGPU_TARGETS=$(vopt_if gfx803 'gfx803;')$(vopt_if gfx900 'gfx900;')$(vopt_if gfx906 'gfx906;')$(vopt_if gfx908 'gfx908;')$(vopt_if gfx90a 'gfx90a;')$(vopt_if gfx1010 'gfx1010;')$(vopt_if gfx1011 'gfx1011;')$(vopt_if gfx1012 'gfx1012;')$(vopt_if gfx1030 'gfx1030;')$(vopt_if gfx1031 'gfx1031;')$(vopt_if gfx1100 'gfx1100;')$(vopt_if gfx1101 'gfx1101;')$(vopt_if gfx1102 'gfx1102;')"
+makedepends="hipamd ROCm-CompilerSupport rocm-cmake rocm-llvm perl ROCm-Device-Libs"
+depends="ROCm-core"
+short_desc="ROCm Parallel Primitives"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="MIT"
+homepage="https://github.com/ROCmSoftwarePlatform/rocPRIM"
+changelog="https://github.com/ROCmSoftwarePlatform/rocPRIM/raw/develop/CHANGELOG.md"
+distfiles="https://github.com/ROCmSoftwarePlatform/rocPRIM/archive/rocm-${version}.tar.gz"
+checksum=968d9059f93d3f0f8a602f7b989e54e36cff2f9136486b6869e4534a5bf8c7d9
+LDFLAGS=-L/opt/rocm/lib
+
+build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+build_options_default="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+post_install() {
+	vlicense LICENSE.txt
+}

@@ -1,0 +1,15 @@
+# Template file for 'rocminfo'
+pkgname=rocminfo
+version=5.5.0
+revision=1
+archs="x86_64"
+build_style=cmake
+configure_args="-DCMAKE_PREFIX_PATH=/opt/rocm -DCMAKE_BUILD_TYPE=Release -DROCRTST_BLD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_INSTALL_LIBDIR=lib"
+makedepends="ROCR-Runtime"
+depends="ROCm-core"
+short_desc="ROCm Application for Reporting System Info"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="NCSA"
+homepage="https://github.com/RadeonOpenCompute/rocminfo"
+distfiles="https://github.com/RadeonOpenCompute/rocminfo/archive/rocm-${version}.tar.gz"
+checksum=b6107d362b70e20a10911741eb44247139b4eb43489f7fa648daff880b6de37f

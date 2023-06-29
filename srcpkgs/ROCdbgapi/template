@@ -1,0 +1,18 @@
+# Template file for 'ROCdbgapi'
+pkgname=ROCdbgapi
+version=5.5.0
+revision=1
+archs="x86_64"
+build_style=cmake
+configure_args="-DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_INSTALL_LIBDIR=lib"
+makedepends="ROCm-CompilerSupport hwids ROCR-Runtime"
+short_desc="AMD Debugger API library for ROCm"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="MIT"
+homepage="https://github.com/ROCm-Developer-Tools/ROCdbgapi"
+distfiles="https://github.com/ROCm-Developer-Tools/ROCdbgapi/archive/rocm-${version}.tar.gz"
+checksum=ce572340a3fe99e4f1538eb614933153456003f8dfe9306a5735cdd25b451e25
+
+post_install() {
+	vlicense LICENSE.txt
+}

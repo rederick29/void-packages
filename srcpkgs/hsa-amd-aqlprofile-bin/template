@@ -1,0 +1,23 @@
+# Template file for 'hsa-amd-aqlprofile-bin'
+pkgname=hsa-amd-aqlprofile-bin
+_major_ver=5
+_minor_ver=5
+_patch_ver=0
+_magic_ver=63
+version=${_major_ver}.${_minor_ver}.${_patch_ver}
+revision=1
+archs="x86_64"
+depends="ROCm-core"
+short_desc="AQLPROFILE library for AMD HSA runtime API extension support"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="custom:Proprietary"
+homepage="https://docs.amd.com"
+distfiles="http://repo.radeon.com/rocm/apt/5.5/pool/main/h/hsa-amd-aqlprofile${version}/hsa-amd-aqlprofile${version}_1.0.0.${_major_ver}0${_minor_ver}00-${_magic_ver}~22.04_amd64.deb"
+checksum=6c768e602a83d102a1c029baf818b69d675f9d9049c7337308025ea09c5ae521
+
+do_install() {
+	cd rocm-${version}
+	vmkdir opt/rocm
+	vcopy lib opt/rocm/lib
+	vcopy share opt/rocm/share
+}

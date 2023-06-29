@@ -1,0 +1,26 @@
+# Template file for 'hipBLAS'
+pkgname=hipBLAS
+version=5.5.0
+revision=1
+archs="x86_64"
+build_style=cmake
+configure_args="-DCMAKE_CXX_COMPILER=/opt/rocm/bin/hipcc -DCMAKE_C_COMPILER=/opt/rocm/bin/hipcc -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_INSTALL_LIBDIR=lib -DAMDGPU_TARGETS=$(vopt_if gfx803 'gfx803;')$(vopt_if gfx900 'gfx900;')$(vopt_if gfx906 'gfx906;')$(vopt_if gfx908 'gfx908;')$(vopt_if gfx90a 'gfx90a;')$(vopt_if gfx1010 'gfx1010;')$(vopt_if gfx1011 'gfx1011;')$(vopt_if gfx1012 'gfx1012;')$(vopt_if gfx1030 'gfx1030;')$(vopt_if gfx1031 'gfx1031;')$(vopt_if gfx1100 'gfx1100;')$(vopt_if gfx1101 'gfx1101;')$(vopt_if gfx1102 'gfx1102;')"
+hostmakedepends="rocm-llvm hipamd gcc-fortran"
+makedepends="rocm-cmake ROCm-Device-Libs rocBLAS rocSOLVER"
+depends="ROCm-core"
+short_desc="ROCm BLAS marshalling library"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="MIT"
+homepage="https://github.com/ROCmSoftwarePlatform/hipBLAS"
+changelog="https://github.com/ROCmSoftwarePlatform/hipBLAS/raw/develop/CHANGELOG.md"
+distfiles="https://github.com/ROCmSoftwarePlatform/hipBLAS/archive/rocm-${version}.tar.gz"
+checksum=b080c25cb61531228d26badcdca856c46c640035c058bfc1c9f63de65f418cd5
+LDFLAGS=-L/opt/rocm/lib
+
+build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+build_options_default="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+post_install() {
+	vlicense LICENSE.md
+}

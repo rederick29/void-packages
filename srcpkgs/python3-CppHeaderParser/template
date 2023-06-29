@@ -1,0 +1,12 @@
+# Template file for 'python3-CppHeaderParser'
+pkgname=python3-CppHeaderParser
+version=2.7.4
+revision=1
+build_style=python3-module
+depends="python3-ply"
+short_desc="C++ header parser for Python3"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="BSD-3-Clause"
+homepage="http://senexcanis.com/open-source/cppheaderparser/"
+distfiles="${SOURCEFORGE_SITE}/project/cppheaderparser/cppheaderparser/CppheaderParser%20${version}/CppHeaderParser-${version}.tar.gz"
+checksum=382b30416d95b0a5e8502b214810dcac2a56432917e2651447d3abe253e3cc42
