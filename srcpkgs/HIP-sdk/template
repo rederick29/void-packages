@@ -1,10 +1,10 @@
 # Template file for 'HIP-sdk'
 pkgname=HIP-sdk
-version=5.5.0
+version=5.6.0
 revision=1
 archs="x86_64"
 build_style=meta
-depends="HIPIFY ROCR-Runtime ROCT-Thunk-Interface ROCm-CompilerSupport ROCm-Device-Libs ROCm-OpenCL-Runtime ROCm-composable_kernel ROCm-core hipBLAS hipCUB hipFFT hipSOLVER hipSPARSE hipamd rccl rocBLAS rocFFT rocMLIR rocPRIM rocRAND rocSOLVER rocSPARSE rocThrust rocm-llvm rocm_smi_lib rocminfo roctracer rocprofiler ROCclr ROCdbgapi ROCgdb hsa-amd-aqlprofile-bin rocALUTION MIOpen MIOpenGEMM rocm-llvm-openmp"
+depends="HIPIFY ROCR-Runtime ROCT-Thunk-Interface ROCm-CompilerSupport ROCm-Device-Libs ROCm-OpenCL-Runtime ROCm-composable_kernel ROCm-core hipBLAS hipCUB hipFFT hipSOLVER hipSPARSE hipamd rccl rocBLAS rocFFT rocMLIR rocPRIM rocRAND rocSOLVER rocSPARSE rocThrust rocm-llvm rocm_smi_lib rocminfo roctracer rocprofiler rocprofiler-v2 ROCclr ROCdbgapi ROCgdb hsa-amd-aqlprofile-bin rocALUTION MIOpen MIOpenGEMM rocm-llvm-openmp"
 short_desc="HIP/ROCm software stack (runtime, development files, tools)"
 maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
 license="Public Domain"

@@ -1,11 +1,12 @@
 # Template file for 'ROCm-core'
 # Please refer to the link below for more information about this package
 # https://gitlab.archlinux.org/archlinux/packaging/packages/rocm-core/-/blob/ccc46e0bb920cf4d45af16959f52015e28fc1725/PKGBUILD
+# You can work out the magic version from https://repo.radeon.com/rocm/apt/
 pkgname=ROCm-core
 _major_ver=5
-_minor_ver=5
+_minor_ver=6
 _patch_ver=0
-_magic_ver=63
+_magic_ver=67
 version=${_major_ver}.${_minor_ver}.${_patch_ver}
 revision=1
 archs="x86_64"

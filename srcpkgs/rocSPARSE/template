@@ -1,6 +1,6 @@
 # Template file for 'rocSPARSE'
 pkgname=rocSPARSE
-version=5.5.0
+version=5.6.0
 revision=1
 archs="x86_64"
 build_style=cmake
@@ -14,7 +14,7 @@ license="MIT"
 homepage="https://github.com/ROCmSoftwarePlatform/rocSPARSE"
 changelog="https://github.com/ROCmSoftwarePlatform/rocSPARSE/raw/develop/CHANGELOG.md"
 distfiles="https://github.com/ROCmSoftwarePlatform/rocSPARSE/archive/rocm-${version}.tar.gz"
-checksum=cbee79b637691bc710c1c83fbaa91db7498d38d4df873be23e28ed5617acde72
+checksum=5797db3deb4a532e691447e3e8c923b93bd9fe4c468f3a88f00cecd80bebcae4
 LDFLAGS=-L/opt/rocm/lib
 
 # GPU architectures to build for

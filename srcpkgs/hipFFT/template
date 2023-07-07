@@ -1,6 +1,6 @@
 # Template file for 'hipFFT'
 pkgname=hipFFT
-version=5.5.0
+version=5.6.0
 revision=1
 archs="x86_64"
 build_style=cmake
@@ -14,7 +14,7 @@ license="MIT"
 homepage="https://github.com/ROCmSoftwarePlatform/hipFFT"
 changelog="https://github.com/ROCmSoftwarePlatform/hipFFT/raw/develop/CHANGELOG.md"
 distfiles="https://github.com/ROCmSoftwarePlatform/hipFFT/archive/rocm-${version}.tar.gz"
-checksum=47ec6f7da7346c312b80daaa8f763e86c7bdc33ac8617cfa3344068e5b20dd9e
+checksum=c7f425b693caf9371b42226d86392335d993a117d23219b6ba1fd13523cb8261
 
 build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
 

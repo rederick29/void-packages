@@ -1,18 +1,17 @@
 # Template file for 'ROCgdb'
 pkgname=ROCgdb
-version=5.5.0
+version=5.6.0
 revision=1
 archs="x86_64"
 build_style=gnu-configure
 configure_args="--prefix=/opt/rocm --libdir=/opt/rocm/lib --program-prefix=roc --enable-64-bit-bfd --enable-targets=x86_64-linux-gnu,amdgcn-amd-amdhsa --disable-ld --disable-gas --disable-gdbserver --disable-sim --enable-tui --disable-gdbtk --disable-gprofng --disable-shared --with-expat --with-system-zlib --without-guile --with-babeltrace --with-lzma --with-python=python3"
-hostmakedepends="bison texinfo flex"
+hostmakedepends="bison texinfo flex pkg-config"
 makedepends="ROCdbgapi zlib-devel expat-devel python3-devel liblzma-devel gmp-devel babeltrace-devel ncurses-devel"
 short_desc="ROCm source-level debugger for Linux based on GDB"
 maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
 license="GPL-3.0-or-later"
 homepage="https://github.com/ROCm-Developer-Tools/ROCgdb"
 distfiles="https://github.com/ROCm-Developer-Tools/ROCgdb/archive/rocm-${version}.tar.gz"
-checksum=d3b100e332facd9635e328f5efd9f0565250edbe05be986baa2e0470a19bcd79
-LDFLAGS=-L/opt/rocm/lib
-export LIBRARY_PATH=$LIBRARY_PATH:/opt/rocm/lib
-export LD_LIBRARY_PATH=/opt/rocm/lib
+checksum=997ef1883aac2769552bc7082c70b837f4e98b57d24c133cea52b9c92fb0dee1
+LDFLAGS="-Wl,-rpath=/opt/rocm/lib,-L/opt/rocm/lib"
+export PKG_CONFIG_PATH=/opt/rocm/share/pkgconfig

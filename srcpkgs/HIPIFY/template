@@ -1,10 +1,10 @@
 # Template file for 'HIPIFY'
 pkgname=HIPIFY
-version=5.5.0
+version=5.6.0
 revision=1
 archs="x86_64"
 build_style=cmake
-configure_args="-DCMAKE_INSTALL_PREFIX=/opt/rocm -DSWDEV_375013=ON -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++ -DCMAKE_LINKER=/opt/rocm/llvm/bin/ld.lld -DLLVM_DIR=/opt/rocm/llvm/lib/cmake/llvm -DCMAKE_INSTALL_LIBDIR=lib"
+configure_args="-DCMAKE_INSTALL_PREFIX=/opt/rocm -DSWDEV_375013=OFF -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++ -DCMAKE_LINKER=/opt/rocm/llvm/bin/ld.lld -DLLVM_DIR=/opt/rocm/llvm/lib/cmake/llvm -DCMAKE_INSTALL_LIBDIR=lib"
 hostmakedepends="rocm-llvm"
 makedepends="zlib zlib-devel"
 depends="ROCm-core"
@@ -14,7 +14,7 @@ license="MIT"
 homepage="https://github.com/ROCm-Developer-Tools/HIPIFY"
 changelog="https://github.com/ROCm-Developer-Tools/HIPIFY/raw/amd-staging/CHANGELOG.md"
 distfiles="https://github.com/ROCm-Developer-Tools/HIPIFY/archive/rocm-${version}.tar.gz"
-checksum=1b75c702799ac93027337f8fb61d7c27ba960e8ece60d907fc8c5ab3f15c3fe9
+checksum=a2572037a7d3bd0813bd6819a5e6c0e911678db5fd3ab15a65370601df91891b
 
 post_install() {
 	vlicense LICENSE.txt

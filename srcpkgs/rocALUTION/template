@@ -1,6 +1,6 @@
 # Template file for 'rocALUTION'
 pkgname=rocALUTION
-version=5.5.0
+version=5.6.0
 revision=1
 archs="x86_64"
 build_style=cmake
@@ -14,7 +14,7 @@ license="MIT"
 homepage="https://github.com/ROCmSoftwarePlatform/rocALUTION"
 changelog="https://github.com/ROCmSoftwarePlatform/rocALUTION/raw/develop/CHANGELOG.md"
 distfiles="https://github.com/ROCmSoftwarePlatform/rocALUTION/archive/rocm-${version}.tar.gz"
-checksum=626e966b67b83a1ef79f9bf27aba998c49cf65c4208092516aa1e32a6cbd8c36
+checksum=7397a2039e9615c0cf6776c33c4083c00b185b5d5c4149c89fea25a8976a3097
 noverifyrdeps=yes
 LDFLAGS=-L/opt/rocm/lib
 

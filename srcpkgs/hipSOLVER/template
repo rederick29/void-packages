@@ -1,6 +1,6 @@
 # Template file for 'hipSOLVER'
 pkgname=hipSOLVER
-version=5.5.0
+version=5.6.0
 revision=1
 archs="x86_64"
 build_style=cmake
@@ -14,7 +14,7 @@ license="MIT"
 homepage="https://github.com/ROCmSoftwarePlatform/hipSOLVER"
 changelog="https://github.com/ROCmSoftwarePlatform/hipSOLVER/raw/develop/CHANGELOG.md"
 distfiles="https://github.com/ROCmSoftwarePlatform/hipSOLVER/archive/rocm-${version}.tar.gz"
-checksum=0f45be0f90907381ae3e82424599e2ca2112d6411b4a64c72558d63f00409b83
+checksum=11fa51d210853d93d24d55b20367738e49711793412f58e8d7689710b92ae16c
 LDFLAGS=-L/opt/rocm/lib
 
 build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"

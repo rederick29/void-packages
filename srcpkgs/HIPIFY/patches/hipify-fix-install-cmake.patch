@@ -1,21 +1,15 @@
---- a/CMakeLists.txt.bak	2023-05-14 15:40:43.155264590 +0200
-+++ b/CMakeLists.txt	2023-05-14 15:41:03.815224712 +0200
-@@ -126,25 +126,13 @@
-
- set(HIPIFY_INSTALL_PATH ${CMAKE_INSTALL_PREFIX})
-
--install(TARGETS hipify-clang DESTINATION ${CMAKE_INSTALL_PREFIX})
-+install(TARGETS hipify-clang DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
- install(
-     DIRECTORY ${CMAKE_SOURCE_DIR}/bin/
--    DESTINATION ${CMAKE_INSTALL_PREFIX}
-+    DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 80c8a3f..a6e4312 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -134,19 +134,6 @@ install(
      USE_SOURCE_PERMISSIONS
      PATTERN "hipify-perl"
      PATTERN "*.sh")
+-# install all folders under clang/version/ in CMAKE_INSTALL_PREFIX path
 -install(
 -    DIRECTORY ${LLVM_DIR}/../../clang/${LLVM_VERSION_MAJOR}.${LLVM_VERSION_MINOR}.${LLVM_VERSION_PATCH}/
--    DESTINATION ${CMAKE_INSTALL_PREFIX}
+-    DESTINATION .
 -    COMPONENT clang-resource-headers
 -    FILES_MATCHING
 -    PATTERN "*.h"
@@ -27,4 +21,7 @@
 -    PATTERN "openmp_wrappers" EXCLUDE)
 
  option(FILE_REORG_BACKWARD_COMPATIBILITY "Enable File Reorg with backward compatibility" ON)
+
+--
+2.41.0
 

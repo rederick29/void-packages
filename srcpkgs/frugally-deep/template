@@ -1,0 +1,18 @@
+# Template file for 'frugally-deep'
+pkgname=frugally-deep
+version=0.15.20
+revision=1
+build_style=cmake
+makedepends="FunctionalPlus eigen json-c++"
+depends="FunctionalPlus eigen json-c++"
+short_desc="Header-only library for using Keras (TensorFlow) models in C++"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="MIT"
+homepage="https://github.com/Dobiasd/frugally-deep"
+changelog="https://github.com/Dobiasd/frugally-deep/releases"
+distfiles="https://github.com/Dobiasd/frugally-deep/archive/v${version}-p0.tar.gz"
+checksum=ad0e0506b89e36ea73644c2e8dde0e56b37846de4d28f625905c633b3e1f6d6e
+
+post_install() {
+	vlicense LICENSE
+}

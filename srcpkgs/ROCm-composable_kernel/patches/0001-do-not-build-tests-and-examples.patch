@@ -1,0 +1,16 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index c9fb6b455..c48909845 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -280,8 +280,6 @@ rocm_package_setup_component(profiler
+ )
+
+ add_subdirectory(library)
+-add_subdirectory(example)
+-add_subdirectory(test)
+ add_subdirectory(profiler)
+
+ #Create an interface target for the include only files and call it "composablekernels"
+--
+2.41.0
+

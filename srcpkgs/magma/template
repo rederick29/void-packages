@@ -1,0 +1,23 @@
+# Template file for 'magma'
+pkgname=magma
+version=2.7.1
+revision=1
+build_style=cmake
+configure_args="-DCMAKE_C_COMPILER=/opt/rocm/bin/hipcc -DCMAKE_CXX_COMPILER=/opt/rocm/bin/hipcc -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON -DMAGMA_ENABLE_HIP=ON -DGPU_TARGET=$(vopt_if gfx803 'gfx803 ')$(vopt_if gfx900 'gfx900 ')$(vopt_if gfx906 'gfx906:xnack- ')$(vopt_if gfx908 'gfx908:xnack- ')$(vopt_if gfx90a 'gfx90a:xnack- ')$(vopt_if gfx90a 'gfx90a:xnack+ ')$(vopt_if gfx1010 'gfx1010 ')$(vopt_if gfx1012 'gfx1012 ')$(vopt_if gfx1030 'gfx1030 ')$(vopt_if gfx1100 'gfx1100 ')$(vopt_if gfx1101 'gfx1101 ')$(vopt_if gfx1102 'gfx1102 ')"
+hostmakedepends="gcc-fortran hipamd"
+makedepends="hipBLAS hipSPARSE rocm-llvm-openmp lapack-devel"
+short_desc="Matrix Algebra on GPU and Multi-core Architectures (HIP backend)"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="custom"
+homepage="https://icl.utk.edu/magma/"
+distfiles="https://icl.utk.edu/projectsfiles/magma/downloads/magma-${version}.tar.gz"
+checksum=d9c8711c047a38cae16efde74bee2eb3333217fd2711e1e9b8606cbbb4ae1a50
+LDFLAGS=-L/opt/rocm/lib
+
+build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1012 gfx1030 gfx1100 gfx1101 gfx1102"
+
+build_options_default="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1012 gfx1030 gfx1100 gfx1101 gfx1102"
+
+post_install() {
+	vlicense COPYRIGHT
+}

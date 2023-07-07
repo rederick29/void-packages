@@ -1,6 +1,6 @@
 # Template file for 'hipSPARSE'
 pkgname=hipSPARSE
-version=5.5.0
+version=5.6.0
 revision=1
 archs="x86_64"
 build_style=cmake
@@ -14,7 +14,7 @@ license="MIT"
 homepage="https://github.com/ROCmSoftwarePlatform/hipSPARSE"
 changelog="https://github.com/ROCmSoftwarePlatform/hipSPARSE/raw/develop/CHANGELOG.md"
 distfiles="https://github.com/ROCmSoftwarePlatform/hipSPARSE/archive/rocm-${version}.tar.gz"
-checksum=8122c8f17d899385de83efb7ac0d8a4fabfcd2aa21bbed63e63ea7adf0d22df6
+checksum=3a6931b744ebaa4469a4c50d059a008403e4dc2a4f04dd69c3c6d20916b4a491
 LDFLAGS=-L/opt/rocm/lib
 
 build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"

@@ -1,5 +1,6 @@
 # Template file for 'MIOpenGEMM'
 pkgname=MIOpenGEMM
+# 5.6.0 note: AMD hasn't tagged it yet for MIOpenGEMM and there is nothing new for this component in this version
 version=5.5.0
 revision=1
 archs="x86_64"

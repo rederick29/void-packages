@@ -1,20 +1,24 @@
 # Template file for 'rocMLIR'
 pkgname=rocMLIR
-version=5.5.0
+version=5.6.0
+_major_ver=5
+_minor_ver=6
 revision=1
 archs="x86_64"
 build_style=cmake
 configure_args="-DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++ -DCMAKE_LINKER=/opt/rocm/llvm/bin/ld.lld -DCMAKE_INSTALL_PREFIX=/opt/rocm -DBUILD_FAT_LIBROCKCOMPILER=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=/opt/rocm -DCMAKE_INSTALL_LIBDIR=lib -DAMDGPU_TARGETS=$(vopt_if gfx803 'gfx803;')$(vopt_if gfx900 'gfx900;')$(vopt_if gfx906 'gfx906;')$(vopt_if gfx908 'gfx908;')$(vopt_if gfx90a 'gfx90a;')$(vopt_if gfx1010 'gfx1010;')$(vopt_if gfx1011 'gfx1011;')$(vopt_if gfx1012 'gfx1012;')$(vopt_if gfx1030 'gfx1030;')$(vopt_if gfx1031 'gfx1031;')$(vopt_if gfx1100 'gfx1100;')$(vopt_if gfx1101 'gfx1101;')$(vopt_if gfx1102 'gfx1102;')"
 make_build_target="librockCompiler"
 hostmakedepends="rocm-llvm python3"
-makedepends="rocBLAS hipamd ROCm-Device-Libs"
+makedepends="rocBLAS hipamd ROCm-Device-Libs rocm-cmake"
 depends="ROCm-core"
 short_desc="MLIR-based convolution and GEMM kernel generator for ROCm"
 maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
 license="Apache-2.0 WITH LLVM-exception"
 homepage="https://github.com/ROCmSoftwarePlatform/rocMLIR"
-distfiles="https://github.com/ROCmSoftwarePlatform/rocMLIR/archive/rocm-${version}.tar.gz"
-checksum=a5f62769d28a73e60bc8d61022820f050e97c977c8f6f6275488db31512e1f42
+# AMD has not tagged rocMLIR for ROCm 5.6.0 yet so it's downloading the branch for now
+# distfiles="https://github.com/ROCmSoftwarePlatform/rocMLIR/archive/rocm-${version}.tar.gz"
+distfiles="https://github.com/ROCmSoftwarePlatform/rocMLIR/archive/release/rocm-${_major_ver}.${_minor_ver}.tar.gz"
+checksum=8ee647fa4260983c3ea088f3fffc8104344d3fd65ebbc11db9b93e21a71f40b9
 
 build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
 

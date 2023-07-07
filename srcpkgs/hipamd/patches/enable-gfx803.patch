@@ -1,7 +1,7 @@
-diff --git a/ROCclr-rocm-5.5.0/utils/flags.hpp b/ROCclr-rocm-5.5.0/utils/flags.hpp
+diff --git a/clr-rocm-5.6.0/rocclr/utils/flags.hpp b/clr-rocm-5.6.0/rocclr/utils/flags.hpp
 index 186d059b..f6e7bb7d 100644
---- a/ROCclr-rocm-5.5.0/utils/flags.hpp
-+++ b/ROCclr-rocm-5.5.0/utils/flags.hpp
+--- a/clr-rocm-5.6.0/rocclr/utils/flags.hpp
++++ b/clr-rocm-5.6.0/rocclr/utils/flags.hpp
 @@ -245,7 +245,7 @@ release(bool, ROC_SYSTEM_SCOPE_SIGNAL, true,                                  \
          "Enable system scope for signals (uses interrupts).")                 \
  release(bool, ROC_SKIP_COPY_SYNC, false,                                      \

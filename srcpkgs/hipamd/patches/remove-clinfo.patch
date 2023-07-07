@@ -9,10 +9,10 @@ Subject: [PATCH] remove clinfo
  packaging/CMakeLists.txt     |  1 -
  3 files changed, 15 deletions(-)
 
-diff --git a/ROCm-OpenCL-Runtime-rocm-5.5.0/CMakeLists.txt b/ROCm-OpenCL-Runtime-rocm-5.5.0/CMakeLists.txt
+diff --git a/clr-rocm-5.6.0/opencl/CMakeLists.txt b/clr-rocm-5.6.0/opencl/CMakeLists.txt
 index 0dc5bf4..aae4ccd 100644
---- a/ROCm-OpenCL-Runtime-rocm-5.5.0/CMakeLists.txt
-+++ b/ROCm-OpenCL-Runtime-rocm-5.5.0/CMakeLists.txt
+--- a/clr-rocm-5.6.0/opencl/CMakeLists.txt
++++ b/clr-rocm-5.6.0/opencl/CMakeLists.txt
 @@ -27,7 +27,6 @@ else()
    find_package(OpenCL REQUIRED)
  endif()
@@ -21,10 +21,10 @@ index 0dc5bf4..aae4ccd 100644
  add_subdirectory(tools/cltrace)
  if(BUILD_TESTS)
    add_subdirectory(tests/ocltst)
-diff --git a/ROCm-OpenCL-Runtime-rocm-5.5.0/opencl-backward-compat.cmake b/ROCm-OpenCL-Runtime-rocm-5.5.0/opencl-backward-compat.cmake
+diff --git a/clr-rocm-5.6.0/opencl/opencl-backward-compat.cmake b/clr-rocm-5.6.0/opencl/opencl-backward-compat.cmake
 index fa914ba..46818db 100644
---- a/ROCm-OpenCL-Runtime-rocm-5.5.0/opencl-backward-compat.cmake
-+++ b/ROCm-OpenCL-Runtime-rocm-5.5.0/opencl-backward-compat.cmake
+--- a/clr-rocm-5.6.0/opencl/opencl-backward-compat.cmake
++++ b/clr-rocm-5.6.0/opencl/opencl-backward-compat.cmake
 @@ -96,16 +96,6 @@ function(generate_wrapper_header)
 
  endfunction()
@@ -52,10 +52,10 @@ index fa914ba..46818db 100644
 
  option(BUILD_SHARED_LIBS "Build the shared library" ON)
  # Create symlink to libraries
-diff --git a/ROCm-OpenCL-Runtime-rocm-5.5.0/packaging/CMakeLists.txt b/ROCm-OpenCL-Runtime-rocm-5.5.0/packaging/CMakeLists.txt
+diff --git a/clr-rocm-5.6.0/opencl/packaging/CMakeLists.txt b/clr-rocm-5.6.0/opencl/packaging/CMakeLists.txt
 index a703f58..e2e2b7d 100644
---- a/ROCm-OpenCL-Runtime-rocm-5.5.0/packaging/CMakeLists.txt
-+++ b/ROCm-OpenCL-Runtime-rocm-5.5.0/packaging/CMakeLists.txt
+--- a/clr-rocm-5.6.0/opencl/packaging/CMakeLists.txt
++++ b/clr-rocm-5.6.0/opencl/packaging/CMakeLists.txt
 @@ -12,7 +12,6 @@ endif()
  set(CPACK_DEB_COMPONENT_INSTALL ON)
  set(CPACK_RPM_COMPONENT_INSTALL ON)

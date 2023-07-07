@@ -1,6 +1,6 @@
 # Template file for 'rocFFT'
 pkgname=rocFFT
-version=5.5.0
+version=5.6.0
 revision=1
 archs="x86_64"
 build_style=cmake
@@ -14,7 +14,7 @@ license="MIT"
 homepage="https://github.com/ROCmSoftwarePlatform/rocFFT/"
 changelog="https://github.com/ROCmSoftwarePlatform/rocFFT/raw/develop/CHANGELOG.md"
 distfiles="https://github.com/ROCmSoftwarePlatform/rocFFT/archive/rocm-${version}.tar.gz"
-checksum=9288152e66504b06082e4eed8cdb791b4f9ae2836b3defbeb4d2b54901b96485
+checksum=e3d4a6c1bdac78f9a22033f57011af783d560308103f73542f9e0e4dd133d38a
 LDFLAGS=-L/opt/rocm/lib
 
 # GPU architectures to build for

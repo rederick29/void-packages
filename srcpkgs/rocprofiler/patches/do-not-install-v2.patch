@@ -1,0 +1,56 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 8f94b58..fbc0a86 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -212,12 +212,6 @@ install(
+   COMPONENT runtime)
+
+ configure_file(bin/rocprofv2 ${PROJECT_BINARY_DIR} COPYONLY)
+-install(
+-  FILES ${PROJECT_SOURCE_DIR}/bin/rocprofv2
+-  DESTINATION ${CMAKE_INSTALL_BINDIR}
+-  PERMISSIONS OWNER_READ OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ
+-              WORLD_EXECUTE
+-  COMPONENT runtime)
+
+ install(
+   FILES ${CMAKE_CURRENT_SOURCE_DIR}/bin/txt2xml.sh
+diff --git a/src/api/CMakeLists.txt b/src/api/CMakeLists.txt
+index 22adc12..33019c0 100644
+--- a/src/api/CMakeLists.txt
++++ b/src/api/CMakeLists.txt
+@@ -142,10 +142,6 @@ foreach(header ${PUBLIC_HEADERS})
+     COMPONENT dev)
+ endforeach()
+
+-install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/rocprofiler/v2
+-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}
+-        COMPONENT dev)
+-
+ # Getting Source files for ROCProfiler, Hardware, HSA, Memory, Session, Counters, Utils
+ file(GLOB ROCPROFILER_SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
+
+@@ -270,20 +266,13 @@ else()
+ endif()
+ ## Install libraries: Non versioned lib file in dev package
+ # install(TARGETS rocprofiler-v2 LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT dev)
+-install(TARGETS rocprofiler-v2 LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT runtime NAMELINK_SKIP)
+ # install(TARGETS rocprofiler-v2 LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT asan)
+
+ file(CONFIGURE OUTPUT ${CMAKE_BINARY_DIR}/librocprofiler64.so
+   CONTENT "OUTPUT_FORMAT(elf64-x86-64)\nINPUT(librocprofiler64.so.1)")
+-install(FILES ${CMAKE_BINARY_DIR}/librocprofiler64.so DESTINATION ${CMAKE_INSTALL_LIBDIR}
+-  PERMISSIONS OWNER_READ OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
+-  COMPONENT runtime)
+
+ file(CONFIGURE OUTPUT ${CMAKE_BINARY_DIR}/librocprofiler64v2.so
+   CONTENT "OUTPUT_FORMAT(elf64-x86-64)\nINPUT(librocprofiler64.so.${PROJECT_VERSION_MAJOR})")
+-install(FILES ${CMAKE_BINARY_DIR}/librocprofiler64v2.so DESTINATION ${CMAKE_INSTALL_LIBDIR}
+-  PERMISSIONS OWNER_READ OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
+-  COMPONENT runtime)
+
+ configure_file(${PROJECT_SOURCE_DIR}/src/core/counters/metrics/basic_counters.xml ${PROJECT_BINARY_DIR}/counters/basic_counters.xml COPYONLY)
+ configure_file(${PROJECT_SOURCE_DIR}/src/core/counters/metrics/derived_counters.xml ${PROJECT_BINARY_DIR}/counters/derived_counters.xml COPYONLY)
+--
+2.41.0
+

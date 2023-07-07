@@ -1,6 +1,6 @@
 # Template file for 'rocm-llvm-openmp'
 pkgname=rocm-llvm-openmp
-version=5.5.0
+version=5.6.0
 revision=1
 archs="x86_64"
 build_style=cmake
@@ -14,8 +14,8 @@ license="Apache-2.0 WITH LLVM-exception"
 homepage="https://github.com/RadeonOpenCompute/llvm-project"
 distfiles="https://github.com/RadeonOpenCompute/llvm-project/archive/rocm-${version}.tar.gz>rocm-llvm.tar.gz
 https://github.com/RadeonOpenCompute/ROCm-Device-Libs/archive/rocm-${version}.tar.gz>rocm-device-libs.tar.gz"
-checksum="5dc6c99f612b69ff73145bee17524e3712990100e16445b71634106acf7927cf
-5ab95aeb9c8bed0514f96f7847e21e165ed901ed826cdc9382c14d199cbadbd3"
+checksum="e922bd492b54d99e56ed88c81e2009ed6472059a180b10cc56ce1f9bd2d7b6ed
+efb5dcdca9b3a9fbe408d494fb4a23e0b78417eb5fa8eebd4a5d226088f28921"
 # Build fails without this :/
 nopie=yes
 

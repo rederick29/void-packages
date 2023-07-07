@@ -1,6 +1,6 @@
 # Template file for 'rocm-cmake'
 pkgname=rocm-cmake
-version=5.5.0
+version=5.6.0
 revision=1
 archs="x86_64"
 wrksrc="${pkgname}-rocm-${version}"
@@ -15,4 +15,4 @@ license="MIT"
 homepage="https://github.com/RadeonOpenCompute/rocm-cmake"
 changelog="https://github.com/RadeonOpenCompute/rocm-cmake/blob/develop/CHANGELOG.md"
 distfiles="https://github.com/RadeonOpenCompute/rocm-cmake/archive/rocm-${version}.tar.gz"
-checksum=b7884c346737eba70ae11044e41598b2482a92e21f3e0719b1ca11619f02a20b
+checksum=a118ca937856a4d0039955a8aef2466ef1fd1f08f7f7221cda53e1b5d02e476a

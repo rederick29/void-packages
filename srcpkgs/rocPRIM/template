@@ -1,6 +1,6 @@
 # Template file for 'rocPRIM'
 pkgname=rocPRIM
-version=5.5.0
+version=5.6.0
 revision=1
 archs="x86_64"
 build_style=cmake
@@ -13,7 +13,7 @@ license="MIT"
 homepage="https://github.com/ROCmSoftwarePlatform/rocPRIM"
 changelog="https://github.com/ROCmSoftwarePlatform/rocPRIM/raw/develop/CHANGELOG.md"
 distfiles="https://github.com/ROCmSoftwarePlatform/rocPRIM/archive/rocm-${version}.tar.gz"
-checksum=968d9059f93d3f0f8a602f7b989e54e36cff2f9136486b6869e4534a5bf8c7d9
+checksum=360d6ece3c4a3c289dd88043432026fb989e982ae4d05230d8cdc858bcd50466
 LDFLAGS=-L/opt/rocm/lib
 
 build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"

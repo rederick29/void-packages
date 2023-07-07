@@ -1,0 +1,16 @@
+# Template file for 'rocm-flang-runtime'
+pkgname=rocm-flang-runtime
+version=5.6.0
+revision=1
+archs="x86_64"
+build_style=cmake
+configure_args="-Wno-dev -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/rocm/llvm -DLLVM_ENABLE_ASSERTIONS=ON -DLLVM_CONFIG=/opt/rocm/llvm/bin/llvm-config -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++ -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_Fortran_COMPILER=/opt/rocm/llvm/bin/flang -DLLVM_TARGETS_TO_BUILD='AMDGPU;X86' -DLLVM_INSTALL_RUNTIME=ON -DFLANG_BUILD_RUNTIME=ON -DFLANG_INCLUDE_TESTS=OFF -DCMAKE_C_FLAGS=-I/builddir/${pkgname}-${version}/runtime/libpgmath/lib/common -DCMAKE_CXX_FLAGS=-I/builddir/${pkgname}-${version}/runtime/libpgmath/lib/common -DOPENMP_BUILD_DIR=/opt/rocm/llvm -DLIBPGMATH=/opt/rocm/llvm/lib/libpgmath.so"
+hostmakedepends="rocm-llvm rocm-flang python3"
+makedepends="rocm-llvm-openmp rocm-flang-pgmath zlib-devel"
+depends="rocm-flang"
+short_desc="ROCm flang Fortran compiler runtime libraries"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="Apache-2.0 WITH LLVM-exception"
+homepage="https://github.com/ROCm-Developer-Tools/flang"
+distfiles="https://github.com/ROCm-Developer-Tools/flang/archive/rocm-${version}.tar.gz"
+checksum=

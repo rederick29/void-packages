@@ -1,6 +1,6 @@
 # Template file for 'ROCdbgapi'
 pkgname=ROCdbgapi
-version=5.5.0
+version=5.6.0
 revision=1
 archs="x86_64"
 build_style=cmake
@@ -11,7 +11,7 @@ maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
 license="MIT"
 homepage="https://github.com/ROCm-Developer-Tools/ROCdbgapi"
 distfiles="https://github.com/ROCm-Developer-Tools/ROCdbgapi/archive/rocm-${version}.tar.gz"
-checksum=ce572340a3fe99e4f1538eb614933153456003f8dfe9306a5735cdd25b451e25
+checksum=9b66e47f4eccb3c8bbc324aade92aac6139539dda449427b7823d0c45341afc8
 
 post_install() {
 	vlicense LICENSE.txt

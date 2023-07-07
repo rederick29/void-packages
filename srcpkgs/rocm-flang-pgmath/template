@@ -1,0 +1,27 @@
+# Template file for 'rocm-flang-pgmath'
+pkgname=rocm-flang-pgmath
+version=5.6.0
+revision=1
+archs="x86_64"
+build_style=cmake
+configure_args="-G Ninja -B . -S ../runtime/libpgmath -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/rocm/llvm -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++ -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_FLAGS=-I/builddir/${pkgname}-${version}/runtime/libpgmath/lib/common -DCMAKE_CXX_FLAGS=-I/builddir/${pkgname}-${version}/runtime/libpgmath/lib/common -DLIBPGMATH_STANDALONE_BUILD=ON"
+hostmakedepends="rocm-llvm python3"
+depends="rocm-llvm"
+short_desc="ROCm flang pgmath library"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="custom:Proprietary"
+homepage="https://github.com/ROCm-Developer-Tools/flang"
+distfiles="https://github.com/ROCm-Developer-Tools/flang/archive/rocm-${version}.tar.gz"
+checksum=
+
+do_configure() {
+	if [ ! -d build ]; then
+		mkdir build
+	fi
+	cd build
+	CFLAGS="-DNDEBUG ${CFLAGS/ -pipe / }" CXXFLAGS="-DNDEBUG ${CXXFLAGS/ -pipe / }" cmake ${cmake_args} ${configure_args} ../runtime/libpgmath
+}
+
+post_install() {
+	vlicense runtime/libpgmath/LICENSE.txt
+}
