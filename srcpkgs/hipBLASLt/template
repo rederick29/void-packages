@@ -1,0 +1,27 @@
+# Template file for 'hipBLASLt'
+pkgname=hipBLASLt
+version=6.0.2
+revision=1
+archs="x86_64"
+build_style=cmake
+configure_args="-DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=/opt/rocm/bin/hipcc -DCMAKE_C_COMPILER=/opt/rocm/bin/hipcc -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_INSTALL_LIBDIR=lib -DAMDGPU_TARGETS=$(vopt_if gfx90a 'gfx90a:xnack+;gfx90a:xnack-;')$(vopt_if gfx940 'gfx940;')$(vopt_if gfx941 'gfx941;')$(vopt_if gfx942 'gfx942;')"
+make_build_args="-j1"
+hostmakedepends="rocm-llvm hipamd git python3-virtualenv msgpack-devel"
+makedepends="rocm-cmake hipBLAS"
+depends="ROCm-core"
+short_desc="hipBLAS General matrix-matrix operations"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="MIT"
+homepage="https://github.com/ROCm/hipBLASLt"
+changelog="https://github.com/ROCm/hipBLASLt/raw/develop/CHANGELOG.md"
+distfiles="https://github.com/ROCmSoftwarePlatform/hipBLASLt/archive/rocm-${version}.tar.gz"
+checksum=e281a1a7760fab8c3e0baafe17950cf43c422184e3226e3c14eb06e50c69d421
+LDFLAGS=-L/opt/rocm/lib
+
+build_options="gfx90a gfx940 gfx941 gfx942"
+
+build_options_default="gfx90a gfx940 gfx941 gfx942"
+
+post_install() {
+	vlicense LICENSE.md
+}

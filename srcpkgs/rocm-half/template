@@ -1,0 +1,16 @@
+# Template file for 'rocm-half'
+pkgname=rocm-half
+version=6.0.2
+revision=1
+archs="x86_64"
+build_style=cmake
+configure_args="-DCMAKE_INSTALL_PREFIX=/opt/rocm -DBUILD_FILE_REORG_BACKWARD_COMPATIBILITY=ON "
+makedepends="rocm-cmake"
+depends="ROCm-core"
+short_desc="Half-precision floating-point library (ROCm install)"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="MIT"
+homepage="https://github.com/ROCm/half"
+changelog="https://github.com/ROCm/half/raw/rocm-${version}/ChangeLog.txt"
+distfiles="https://github.com/ROCm/half/archive/rocm-${version}.tar.gz"
+checksum=0dd21a85a666ea3413a490cf9454578a805adf4ed6b007b4fa645e03aff796d4

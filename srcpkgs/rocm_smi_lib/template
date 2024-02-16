@@ -1,0 +1,14 @@
+# Template file for 'rocm_smi_lib'
+pkgname=rocm_smi_lib
+version=6.0.2
+revision=1
+archs="x86_64"
+build_style=cmake
+configure_args="-DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib"
+depends="ROCm-core python3"
+short_desc="ROCm System Management Interface Library"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="NCSA"
+homepage="https://github.com/RadeonOpenCompute/rocm_smi_lib"
+distfiles="https://github.com/RadeonOpenCompute/rocm_smi_lib/archive/rocm-${version}.tar.gz"
+checksum=61e755d710ff38425df3d262d1ad4c510d52d3c64e3fe15140c2575eba316949

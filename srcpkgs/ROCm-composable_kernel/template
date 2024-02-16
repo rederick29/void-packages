@@ -1,0 +1,37 @@
+# Template file for 'ROCm-composable_kernel'
+pkgname=ROCm-composable_kernel
+version=6.0.2
+revision=1
+archs="x86_64"
+build_style=cmake
+configure_args="-DBUILD_DEV=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=/opt/rocm/bin/hipcc -DCMAKE_C_COMPILER=/opt/rocm/bin/hipcc -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_PREFIX_PATH=/opt/rocm -DCMAKE_INSTALL_LIBDIR=lib -DGPU_TARGETS=$(vopt_if gfx803 'gfx803;')$(vopt_if gfx900 'gfx900;')$(vopt_if gfx906 'gfx906;')$(vopt_if gfx908 'gfx908;')$(vopt_if gfx90a 'gfx90a;')$(vopt_if gfx940 'gfx940;')$(vopt_if gfx941 'gfx941;')$(vopt_if gfx942 'gfx942;')$(vopt_if gfx1010 'gfx1010;')$(vopt_if gfx1011 'gfx1011;')$(vopt_if gfx1012 'gfx1012;')$(vopt_if gfx1030 'gfx1030;')$(vopt_if gfx1031 'gfx1031;')$(vopt_if gfx1100 'gfx1100;')$(vopt_if gfx1101 'gfx1101;')$(vopt_if gfx1102 'gfx1102;')"
+hostmakedepends="rocm-llvm hipamd git"
+makedepends="rocm-cmake ROCm-Device-Libs rocm-llvm-openmp"
+depends="ROCm-core"
+short_desc="ROCm Composable Kernel"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="MIT"
+homepage="https://github.com/ROCmSoftwarePlatform/composable_kernel"
+changelog="https://github.com/ROCmSoftwarePlatform/composable_kernel/raw/develop/CHANGELOG.md"
+distfiles="https://github.com/ROCmSoftwarePlatform/composable_kernel/archive/rocm-${version}.tar.gz"
+checksum=f648a99388045948b7d5fbf8eb8da6a1803c79008b54d406830b7f9119e1dcf6
+LDFLAGS=-L/opt/rocm/lib
+
+# GPU architectures to build for
+build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx940 gfx941 gfx942 gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+build_options_default="gfx803 gfx900 gfx906 gfx908 gfx90a gfx940 gfx941 gfx942 gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+# Last time I checked this package, only the following built. Current version should work for more, though I'm leaving this here for reference.
+#build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1030"
+#build_options_default="gfx803 gfx900 gfx906 gfx908 gfx90a gfx1030"
+
+pre_configure() {
+    echo "This package takes very long to build and is very resource intensive. I HIGHLY recommend only building this for your GPU only. Ctrl-C now to change if needed. Continuing in 30 seconds..."
+    sleep 30
+
+}
+
+post_install() {
+	vlicense LICENSE
+}

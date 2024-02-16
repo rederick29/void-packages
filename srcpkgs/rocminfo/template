@@ -1,0 +1,15 @@
+# Template file for 'rocminfo'
+pkgname=rocminfo
+version=6.0.2
+revision=1
+archs="x86_64"
+build_style=cmake
+configure_args="-DCMAKE_C_COMPILER=/opt/rocm/lib/llvm/bin/clang -DCMAKE_CXX_COMPILER=/opt/rocm/lib/llvm/bin/clang++ -DCMAKE_LINKER=/opt/rocm/lib/llvm/bin/lld -DCMAKE_PREFIX_PATH=/opt/rocm -DCMAKE_BUILD_TYPE=Release -DROCRTST_BLD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_INSTALL_LIBDIR=lib"
+makedepends="ROCR-Runtime rocm-llvm"
+depends="ROCm-core ROCT-Thunk-Interface"
+short_desc="ROCm Application for Reporting System Info"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="NCSA"
+homepage="https://github.com/RadeonOpenCompute/rocminfo"
+distfiles="https://github.com/RadeonOpenCompute/rocminfo/archive/rocm-${version}.tar.gz"
+checksum=e616d364a48de18eaee661bdce999d095086905f49777663ca99312f40a63da1
