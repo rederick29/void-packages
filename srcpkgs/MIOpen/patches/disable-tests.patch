@@ -1,0 +1,25 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index aebd98498..3f90d7090 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -56,8 +56,6 @@ set(CMAKE_CXX_STANDARD 17)
+ set(CMAKE_CXX_STANDARD_REQUIRED ON)
+ set(CMAKE_CXX_EXTENSIONS OFF)
+
+-enable_testing()
+-
+ find_package(ROCM 0.7.3 REQUIRED PATHS /opt/rocm)
+
+ include(ROCMInstallTargets)
+@@ -787,8 +785,6 @@ add_subdirectory(src)
+ if(MIOPEN_BUILD_DRIVER)
+     add_subdirectory(driver)
+ endif()
+-add_subdirectory(test)
+-add_subdirectory(speedtests)
+ add_subdirectory(utils)
+ if(MIOPEN_ENABLE_FIN)
+ add_subdirectory(fin)
+--
+2.41.0
+

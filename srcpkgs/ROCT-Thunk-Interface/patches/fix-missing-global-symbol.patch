@@ -1,0 +1,28 @@
+From a4d46eb769313ddfdc238fdd358519f1c56bfa1f Mon Sep 17 00:00:00 2001
+From: Jeremy Newton <Jeremy.Newton@amd.com>
+Date: Tue, 19 Dec 2023 19:27:47 -0500
+Subject: [PATCH] Fix missing global symbol
+
+If using hsakmt as a shared library
+
+Change-Id: I66a1849a46bd7009813d49824d0d059e8a511038
+Signed-off-by: Jeremy Newton <Jeremy.Newton@amd.com>
+---
+ src/libhsakmt.ver | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/libhsakmt.ver b/src/libhsakmt.ver
+index 15c2916..c04cefe 100644
+--- a/src/libhsakmt.ver
++++ b/src/libhsakmt.ver
+@@ -81,6 +81,7 @@ hsaKmtWaitOnEvent_Ext;
+ hsaKmtWaitOnMultipleEvents_Ext;
+ hsaKmtReplaceAsanHeaderPage;
+ hsaKmtReturnAsanHeaderPage;
++hsaKmtGetAMDGPUDeviceHandle;
+ 
+ local: *;
+ };
+-- 
+2.43.1
+

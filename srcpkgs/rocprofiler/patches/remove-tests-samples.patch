@@ -1,0 +1,41 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 9d52082..599a0d4 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -173,33 +173,12 @@ if(USE_PROF_API EQUAL 1)
+     endif()
+ endif()
+
+-enable_testing()
+-
+-# Temporarily for CI to work
+-set(ROCPROFILER_BUILD_TESTS ON)
+-set(ROCPROFILER_BUILD_CI ON)
+-
+-if(ROCPROFILER_BUILD_CI)
+-    include(CTest)
+-endif()
+-
+ # Build libraries
+ add_subdirectory(src)
+
+ # Build Plugins
+ add_subdirectory(plugin)
+
+-if(ROCPROFILER_BUILD_SAMPLES)
+-    # Build samples
+-    add_subdirectory(samples)
+-endif()
+-
+-if(ROCPROFILER_BUILD_TESTS)
+-    # Build tests
+-    add_subdirectory(test)
+-    add_subdirectory(tests-v2)
+-endif()
+-
+ # Installation and packaging
+ set(DEST_NAME ${ROCPROFILER_NAME})
+ if(DEFINED CMAKE_INSTALL_PREFIX)
+--
+2.41.0
+

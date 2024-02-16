@@ -1,0 +1,16 @@
+# Template file for 'FunctionalPlus'
+pkgname=FunctionalPlus
+version=0.2.22
+revision=1
+build_style=cmake
+short_desc="Functional Programming Library for C++"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="BSL-1.0"
+homepage="https://github.com/Dobiasd/FunctionalPlus"
+changelog="https://github.com/Dobiasd/FunctionalPlus/releases"
+distfiles="https://github.com/Dobiasd/FunctionalPlus/archive/v${version}.tar.gz"
+checksum=79378668dff6ffa8abc1abde2c2fe37dc6fe1ac040c55d5ee7886924fa6a1376
+
+post_install() {
+	vlicense LICENSE
+}

@@ -1,0 +1,54 @@
+# Template file for 'rocprofiler'
+pkgname=rocprofiler
+version=6.0.2
+revision=1
+archs="x86_64"
+build_style=cmake
+hostmakedepends="hipamd python3"
+makedepends="roctracer ROCdbgapi ROCm-Device-Libs rocm-llvm rocm-llvm-openmp python3-lxml python3-CppHeaderParser libpciaccess-devel hsa-amd-aqlprofile-bin elfutils-devel zlib zlib-devel python3-yaml python3-barectf python3-setuptools libatomic libatomic-devel libnuma-devel"
+depends="ROCm-core"
+short_desc="ROC profiler library"
+maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
+license="MIT"
+homepage="https://github.com/ROCm-Developer-Tools/rocprofiler"
+distfiles="https://github.com/ROCm-Developer-Tools/rocprofiler/archive/rocm-${version}.tar.gz"
+checksum=d3f24e639a5e151fa418a92ae6fe150bdf14120b8982a5baa52844ce2fba0b82
+replaces="rocprofiler-v2"
+
+CXXFLAGS="${CXXFLAGS} -Wno-non-c-typedef-for-linkage -Wno-missing-braces -Wno-unused-variable -Wno-unused-function -Wno-sometimes-uninitialized -Wno-unused-private-field -Wno-#warnings"
+
+build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx940 gfx941 gfx942 gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+build_options_default="gfx803 gfx900 gfx906 gfx908 gfx90a gfx940 gfx941 gfx942 gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
+
+do_configure() {
+	cmake \
+	-G "Unix Makefiles" \
+	-B build \
+	-DCMAKE_BUILD_TYPE=Release \
+	-DROCPROFILER_BUILD_CI=0 \
+	-DROCPROFILER_BUILD_TESTS=0 \
+	-DROCPROFILER_BUILD_SAMPLES=0 \
+	-DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang \
+	-DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++ \
+	-DCMAKE_PREFIX_PATH=/opt/rocm/include/hsa:/opt/rocm \
+	-DCMAKE_MODULE_PATH=/opt/rocm/hip/cmake \
+	-DCMAKE_INSTALL_PREFIX=/opt/rocm \
+	-DCMAKE_MODULE_PATH=/opt/rocm/hip/cmake \
+	-DCMAKE_INSTALL_LIBDIR=lib \
+	-DGPU_TARGETS="$(vopt_if gfx803 'gfx803 ')$(vopt_if gfx900 'gfx900 ')$(vopt_if gfx906 'gfx906 ')$(vopt_if gfx908 'gfx908 ')$(vopt_if gfx90a 'gfx90a ')$(vopt_if gfx940 'gfx940;')$(vopt_if gfx941 'gfx941;')$(vopt_if gfx942 'gfx942;')$(vopt_if gfx1010 'gfx1010 ')$(vopt_if gfx1011 'gfx1011 ')$(vopt_if gfx1012 'gfx1012 ')$(vopt_if gfx1030 'gfx1030 ')$(vopt_if gfx1031 'gfx1031 ')$(vopt_if gfx1100 'gfx1100 ')$(vopt_if gfx1101 'gfx1101 ')$(vopt_if gfx1102 'gfx1102 ')"
+}
+
+do_build() {
+	cmake --build build
+}
+
+do_install() {
+	DESTDIR=${PKGDESTDIR} cmake --install build
+}
+
+post_install() {
+	vlicense LICENSE
+}
+
+# vim: ft=sh noet ai sw=4 ts=4
