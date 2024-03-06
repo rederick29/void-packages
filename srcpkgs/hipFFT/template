@@ -2,7 +2,7 @@
 pkgname=hipFFT
 version=6.0.2
 # separate versions
-_hipfft_version=6.0.0
+_hipfft_version=6.0.2
 _rocfft_version=6.0.2
 revision=1
 archs="x86_64"
@@ -18,8 +18,8 @@ homepage="https://github.com/ROCmSoftwarePlatform/hipFFT"
 changelog="https://github.com/ROCmSoftwarePlatform/hipFFT/raw/develop/CHANGELOG.md"
 distfiles="https://github.com/ROCmSoftwarePlatform/hipFFT/archive/rocm-${version}.tar.gz>hipfft.tar.gz
 https://github.com/ROCmSoftwarePlatform/rocFFT/archive/rocm-${version}.tar.gz"
-checksum="44f328b7862c066459089dfe62833cb7d626c6ceb71c57d8c7d6bba45dad491e
-d3e1f7a4dc661f1e5ffce02e2e01ae6c3c339bac8e93deaf175e4c03ddfea459"
+checksum="c0a4bac5fa9a757a19a4995fa9571328b6ee0a71e93c66a880069794d65d284a
+ d3e1f7a4dc661f1e5ffce02e2e01ae6c3c339bac8e93deaf175e4c03ddfea459"
 
 build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx940 gfx941 gfx942 gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
 
