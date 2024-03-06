@@ -28,7 +28,9 @@ build_options_default="gfx803 gfx900 gfx906 gfx908 gfx90a gfx940 gfx941 gfx942 g
 pre_configure() {
     # rocFFT source needs to be available in clients/rocFFT
     # || rm in case of dirty build
-    rmdir hipFFT-rocm-${_hipfft_version}/clients/rocFFT 2> /dev/null || rm hipFFT-rocm-${_hipfft_version}/clients/rocFFT 2> /dev/null
+    [ -e hipFFT-rocm-${_hipfft_version}/clients/rocFFT ] && {
+        rmdir hipFFT-rocm-${_hipfft_version}/clients/rocFFT 2> /dev/null || rm hipFFT-rocm-${_hipfft_version}/clients/rocFFT 2> /dev/null
+    }
     ln -s $(readlink -f rocFFT-rocm-${_rocfft_version}) hipFFT-rocm-${_hipfft_version}/clients/rocFFT
 
     # note: I doubt that it matters for this package but fwiw,
