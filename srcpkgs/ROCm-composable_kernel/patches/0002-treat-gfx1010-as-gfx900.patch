@@ -1,0 +1,15 @@
+Treat gfx1010 as gfx900
+
+For more info, see https://github.com/ROCm/composable_kernel/issues/775#issuecomment-1876260894
+
+--- a/include/ck/ck.hpp
++++ b/include/ck/ck.hpp
+@@ -49,7 +49,7 @@
+ #define CK_BUFFER_RESOURCE_3RD_DWORD -1
+ #elif defined(__gfx803__) || defined(__gfx900__) || defined(__gfx906__) || defined(__gfx908__) || \
+     defined(__gfx90a__) || defined(__gfx940__) || defined(__gfx941__) ||                          \
+-    defined(__gfx942__) // for GPU code
++    defined(__gfx942__) || defined(__gfx1010__) // for GPU code
+ #define CK_BUFFER_RESOURCE_3RD_DWORD 0x00020000
+ #elif defined(__gfx1030__) // for GPU code
+ #define CK_BUFFER_RESOURCE_3RD_DWORD 0x31014000
