@@ -1,6 +1,6 @@
 # Template file for 'rocm-half'
 pkgname=rocm-half
-version=6.0.2
+version=6.1.0
 revision=1
 archs="x86_64"
 build_style=cmake
@@ -13,4 +13,4 @@ license="MIT"
 homepage="https://github.com/ROCm/half"
 changelog="https://github.com/ROCm/half/raw/rocm-${version}/ChangeLog.txt"
 distfiles="https://github.com/ROCm/half/archive/rocm-${version}.tar.gz"
-checksum=0dd21a85a666ea3413a490cf9454578a805adf4ed6b007b4fa645e03aff796d4
+checksum=ac26cfc3daf767b6bb76d619a69ef62b0de4853322150517fe569792052a573f

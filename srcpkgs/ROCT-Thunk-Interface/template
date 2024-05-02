@@ -1,6 +1,6 @@
 # Template file for 'ROCT-Thunk-Interface'
 pkgname=ROCT-Thunk-Interface
-version=6.0.2
+version=6.1.0
 revision=1
 archs="x86_64"
 build_style=cmake
@@ -13,7 +13,7 @@ maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
 license="MIT"
 homepage="https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface"
 distfiles="https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/archive/rocm-${version}.tar.gz"
-checksum=5354bda9382f80edad834463f2c684289841770a4f7b13f0f40bd8271cc4c71d
+checksum=1085055068420821f7a7adb816692412b5fb38f89d67b9edb9995198f39e2f31
 
 build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx940 gfx941 gfx942 gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
 

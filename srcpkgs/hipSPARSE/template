@@ -1,11 +1,12 @@
 # Template file for 'hipSPARSE'
 pkgname=hipSPARSE
-version=6.0.2
+version=6.1.0
 revision=1
 archs="x86_64"
 build_style=cmake
-configure_args="-DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=/opt/rocm/bin/hipcc -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_INSTALL_LIBDIR=lib -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF -DBUILD_CLIENTS_TESTS=OFF -DBUILD_CLIENTS_BENCHMARKS=OFF -DBUILD_CLIENTS_SAMPLES=OFF -DAMDGPU_TARGETS=$(vopt_if gfx803 'gfx803;')$(vopt_if gfx900 'gfx900;')$(vopt_if gfx906 'gfx906;')$(vopt_if gfx908 'gfx908;')$(vopt_if gfx90a 'gfx90a;')$(vopt_if gfx940 'gfx940;')$(vopt_if gfx941 'gfx941;')$(vopt_if gfx942 'gfx942;')$(vopt_if gfx1010 'gfx1010;')$(vopt_if gfx1011 'gfx1011;')$(vopt_if gfx1012 'gfx1012;')$(vopt_if gfx1030 'gfx1030;')$(vopt_if gfx1031 'gfx1031;')$(vopt_if gfx1100 'gfx1100;')$(vopt_if gfx1101 'gfx1101;')$(vopt_if gfx1102 'gfx1102;')"
-hostmakedepends="rocm-llvm hipamd gcc-fortran"
+configure_args="-DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=/opt/rocm/bin/hipcc -DCMAKE_Fortran_COMPILER=/opt/rocm/lib/llvm/bin/flang -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_INSTALL_LIBDIR=lib -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF -DBUILD_CLIENTS_TESTS=OFF -DBUILD_CLIENTS_BENCHMARKS=OFF -DBUILD_CLIENTS_SAMPLES=OFF -DAMDGPU_TARGETS=$(vopt_if gfx803 'gfx803;')$(vopt_if gfx900 'gfx900;')$(vopt_if gfx906 'gfx906;')$(vopt_if gfx908 'gfx908;')$(vopt_if gfx90a 'gfx90a;')$(vopt_if gfx940 'gfx940;')$(vopt_if gfx941 'gfx941;')$(vopt_if gfx942 'gfx942;')$(vopt_if gfx1010 'gfx1010;')$(vopt_if gfx1011 'gfx1011;')$(vopt_if gfx1012 'gfx1012;')$(vopt_if gfx1030 'gfx1030;')$(vopt_if gfx1031 'gfx1031;')$(vopt_if gfx1100 'gfx1100;')$(vopt_if gfx1101 'gfx1101;')$(vopt_if gfx1102 'gfx1102;')"
+# flang instead of gcc-fortran
+hostmakedepends="rocm-llvm hipamd rocm-flang-runtime"
 makedepends="rocm-cmake ROCm-Device-Libs rocSPARSE"
 depends="ROCm-core"
 short_desc="ROCm SPARSE marshalling library"
@@ -14,7 +15,7 @@ license="MIT"
 homepage="https://github.com/ROCmSoftwarePlatform/hipSPARSE"
 changelog="https://github.com/ROCmSoftwarePlatform/hipSPARSE/raw/develop/CHANGELOG.md"
 distfiles="https://github.com/ROCmSoftwarePlatform/hipSPARSE/archive/rocm-${version}.tar.gz"
-checksum=40c1d2493f87c686d9afd84a00321ad10ca0d0d80d6dcfeee8e51858dd1bd8c1
+checksum=1d9277a11f71474ea4a9f8419a7a2c37170a86969584e5724e385ec74241e565
 LDFLAGS=-L/opt/rocm/lib
 
 build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx940 gfx941 gfx942 gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"

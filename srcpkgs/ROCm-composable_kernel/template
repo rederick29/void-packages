@@ -1,10 +1,13 @@
 # Template file for 'ROCm-composable_kernel'
 pkgname=ROCm-composable_kernel
-version=6.0.2
+# MIOpen wants this package to be at 4d96aae39f30681f3ef10a0cc23fc2dbee96cd4f
+# there is one potentially breaking commit between that and tagged 6.1.0
+version=6.1.0
 revision=1
 archs="x86_64"
 build_style=cmake
-configure_args="-DBUILD_DEV=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=/opt/rocm/bin/hipcc -DCMAKE_C_COMPILER=/opt/rocm/bin/hipcc -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_PREFIX_PATH=/opt/rocm -DCMAKE_INSTALL_LIBDIR=lib -DGPU_TARGETS=$(vopt_if gfx803 'gfx803;')$(vopt_if gfx900 'gfx900;')$(vopt_if gfx906 'gfx906;')$(vopt_if gfx908 'gfx908;')$(vopt_if gfx90a 'gfx90a;')$(vopt_if gfx940 'gfx940;')$(vopt_if gfx941 'gfx941;')$(vopt_if gfx942 'gfx942;')$(vopt_if gfx1010 'gfx1010;')$(vopt_if gfx1011 'gfx1011;')$(vopt_if gfx1012 'gfx1012;')$(vopt_if gfx1030 'gfx1030;')$(vopt_if gfx1031 'gfx1031;')$(vopt_if gfx1100 'gfx1100;')$(vopt_if gfx1101 'gfx1101;')$(vopt_if gfx1102 'gfx1102;')"
+# 6.1.0: added -DINSTANCES_ONLY=ON
+configure_args="-DBUILD_DEV=OFF -DINSTANCES_ONLY=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=/opt/rocm/bin/hipcc -DCMAKE_C_COMPILER=/opt/rocm/bin/hipcc -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_PREFIX_PATH=/opt/rocm -DCMAKE_INSTALL_LIBDIR=lib -DGPU_TARGETS=$(vopt_if gfx803 'gfx803;')$(vopt_if gfx900 'gfx900;')$(vopt_if gfx906 'gfx906;')$(vopt_if gfx908 'gfx908;')$(vopt_if gfx90a 'gfx90a;')$(vopt_if gfx940 'gfx940;')$(vopt_if gfx941 'gfx941;')$(vopt_if gfx942 'gfx942;')$(vopt_if gfx1010 'gfx1010;')$(vopt_if gfx1011 'gfx1011;')$(vopt_if gfx1012 'gfx1012;')$(vopt_if gfx1030 'gfx1030;')$(vopt_if gfx1031 'gfx1031;')$(vopt_if gfx1100 'gfx1100;')$(vopt_if gfx1101 'gfx1101;')$(vopt_if gfx1102 'gfx1102;')"
 hostmakedepends="rocm-llvm hipamd git"
 makedepends="rocm-cmake ROCm-Device-Libs rocm-llvm-openmp"
 depends="ROCm-core"
@@ -14,7 +17,7 @@ license="MIT"
 homepage="https://github.com/ROCmSoftwarePlatform/composable_kernel"
 changelog="https://github.com/ROCmSoftwarePlatform/composable_kernel/raw/develop/CHANGELOG.md"
 distfiles="https://github.com/ROCmSoftwarePlatform/composable_kernel/archive/rocm-${version}.tar.gz"
-checksum=f648a99388045948b7d5fbf8eb8da6a1803c79008b54d406830b7f9119e1dcf6
+checksum=355a4514b96b56aa9edf78198a3e22067e7397857cfe29d9a64d9c5557b9f83d
 LDFLAGS=-L/opt/rocm/lib
 
 # GPU architectures to build for

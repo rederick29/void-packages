@@ -1,16 +1,16 @@
 diff --git a/library/src/CMakeLists.txt b/library/src/CMakeLists.txt
-index 24c1058..848267e 100644
+index 391fa86..4147cc8 100644
 --- a/library/src/CMakeLists.txt
 +++ b/library/src/CMakeLists.txt
-@@ -520,8 +520,6 @@ endif()
- # architectures.  Less common architectures are filtered out from the
- # list and kernels for them are built at runtime instead.
- set( AMDGPU_TARGETS_AOT ${AMDGPU_TARGETS} )
--list( REMOVE_ITEM AMDGPU_TARGETS_AOT gfx803 )
--list( REMOVE_ITEM AMDGPU_TARGETS_AOT gfx900 )
- # The binary will be having relative RUNPATH with respect to install directory
- # Set LD_LIBRARY_PATH for executing the binary from build directory.
- add_custom_command(
+@@ -534,8 +534,6 @@ endif()
+ if ( ROCFFT_KERNEL_CACHE_ENABLE )
+
+   set( AMDGPU_TARGETS_AOT ${AMDGPU_TARGETS} )
+-  list( REMOVE_ITEM AMDGPU_TARGETS_AOT gfx803 )
+-  list( REMOVE_ITEM AMDGPU_TARGETS_AOT gfx900 )
+   # The binary will be having relative RUNPATH with respect to install directory
+   # Set LD_LIBRARY_PATH for executing the binary from build directory.
+   add_custom_command(
 --
-2.43.1
+2.44.0
 

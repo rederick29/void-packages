@@ -1,6 +1,6 @@
 # Template file for 'rocFFT'
 pkgname=rocFFT
-version=6.0.2
+version=6.1.0
 revision=1
 archs="x86_64"
 build_style=cmake
@@ -15,7 +15,7 @@ license="MIT"
 homepage="https://github.com/ROCmSoftwarePlatform/rocFFT/"
 changelog="https://github.com/ROCmSoftwarePlatform/rocFFT/raw/develop/CHANGELOG.md"
 distfiles="https://github.com/ROCmSoftwarePlatform/rocFFT/archive/rocm-${version}.tar.gz"
-checksum=d3e1f7a4dc661f1e5ffce02e2e01ae6c3c339bac8e93deaf175e4c03ddfea459
+checksum=9e6643174a2b0f376127f43454e78d4feba6fac695d4cda9796da50005ecac66
 LDFLAGS=-L/opt/rocm/lib
 # LD_LIBRARY_PATH=/opt/rocm/lib:$LD_LIBRARY_PATH
 

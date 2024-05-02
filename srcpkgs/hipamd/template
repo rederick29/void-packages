@@ -1,10 +1,10 @@
 # Template file for 'hipamd'
 pkgname=hipamd
-version=6.0.2
+version=6.1.0
 revision=1
 archs="x86_64"
 build_style=cmake
-configure_args="-Wno-dev -B . -S /builddir/${pkgname}-${version}/clr-rocm-${version} -DHIP_COMMON_DIR=/builddir/${pkgname}-${version}/HIP-rocm-${version} -DHIP_PLATFORM=amd -DCMAKE_PREFIX_PATH=/opt/rocm -DHIPCC_BIN_DIR=/builddir/${pkgname}-${version}/HIPCC-rocm-${version}/build -DHIP_CATCH_TEST=0 -DCLR_BUILD_HIP=ON -DCLR_BUILD_OCL=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_INSTALL_LIBDIR=lib -DHIP_CLANG_PATH=/opt/rocm/lib/llvm/bin -DCMAKE_C_COMPILER=/opt/rocm/lib/llvm/bin/clang -DCMAKE_CXX_COMPILER=/opt/rocm/lib/llvm/bin/clang++ -DCMAKE_LINKER=/opt/rocm/lib/llvm/bin/ld.lld"
+configure_args="-Wno-dev -B . -S /builddir/${pkgname}-${version}/clr-rocm-${version} -DHIP_COMMON_DIR=/builddir/${pkgname}-${version}/HIP-rocm-${version} -DHIP_PLATFORM=amd -DCMAKE_PREFIX_PATH=/opt/rocm -DHIPCC_BIN_DIR=/builddir/${pkgname}-${version}/llvm-project-rocm-${version}/amd/hipcc/build -DHIP_CATCH_TEST=0 -DCLR_BUILD_HIP=ON -DCLR_BUILD_OCL=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_INSTALL_LIBDIR=lib -DHIP_CLANG_PATH=/opt/rocm/lib/llvm/bin -DCMAKE_C_COMPILER=/opt/rocm/lib/llvm/bin/clang -DCMAKE_CXX_COMPILER=/opt/rocm/lib/llvm/bin/clang++ -DCMAKE_LINKER=/opt/rocm/lib/llvm/bin/ld.lld"
 hostmakedepends="perl rocm-llvm libnuma python3"
 makedepends="rocm-cmake zlib-devel ROCm-CompilerSupport ROCR-Runtime libnuma-devel python3-CppHeaderParser libglvnd-devel"
 depends="rocm-llvm perl rocminfo ROCm-core ROCm-Device-Libs rocm-cmake"
@@ -14,15 +14,15 @@ license="MIT"
 homepage="https://github.com/ROCm-Developer-Tools/HIP"
 distfiles="https://github.com/ROCm-Developer-Tools/HIP/archive/rocm-${version}.tar.gz>hip.tar.gz
 https://github.com/ROCm-Developer-Tools/clr/archive/rocm-${version}.tar.gz>clr.tar.gz
-https://github.com/ROCm-Developer-Tools/HIPCC/archive/rocm-${version}.tar.gz>hipcc.tar.gz"
-checksum="b47178db94f2acc106e1a88ceb029844805266ebaba11ef63744e90d224b11be
-cb8ac610c8d4041b74fb3129c084f1e7b817ce1a5a9943feca1fa7531dc7bdcc
-d6209b14fccdd00d7231dec4b4f962aa23914b9dde389ba961370e8ba918bde5"
+https://github.com/ROCm/llvm-project/archive/rocm-${version}.tar.gz>hipcc.tar.gz"
+checksum="6fd57910a16d0b54df822807e67b6207146233a2de5a46c6a05b940a21e2c4d7
+49b23eef621f4e8e528bb4de8478a17436f42053a2f7fde21ff221aa683205c7
+6bd9912441de6caf6b26d1323e1c899ecd14ff2431874a2f5883d3bc5212db34"
 python_version=3
 
 pre_configure() {
 	export HIP_DIR="$(readlink -f HIP-rocm-${version})"
-	export HIPCC_DIR="$(readlink -f HIPCC-rocm-${version})"
+	export HIPCC_DIR="$(readlink -f llvm-project-rocm-${version})/amd/hipcc"
 
 	# Build HIPCC
 	cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -S ${HIPCC_DIR} -B ${HIPCC_DIR}/build -DCMAKE_C_COMPILER=/opt/rocm/lib/llvm/bin/clang -DCMAKE_CXX_COMPILER=/opt/rocm/lib/llvm/bin/clang++ -DCMAKE_LINKER=/opt/rocm/lib/llvm/bin/ld.lld
@@ -67,6 +67,6 @@ post_install() {
 	vlicense LICENCE LICENSE-CLR
 	cd ../HIP-rocm-${version}
 	vlicense LICENSE.txt LICENSE-HIP
-	cd ../HIPCC-rocm-${version}
+	cd ../llvm-project-rocm-${version}/amd/hipcc
 	vlicense LICENSE.txt LICENSE-HIPCC
 }

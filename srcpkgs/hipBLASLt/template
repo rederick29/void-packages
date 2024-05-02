@@ -1,10 +1,10 @@
 # Template file for 'hipBLASLt'
 pkgname=hipBLASLt
-version=6.0.2
+version=6.1.0
 revision=1
 archs="x86_64"
 build_style=cmake
-configure_args="-DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=/opt/rocm/bin/hipcc -DCMAKE_C_COMPILER=/opt/rocm/bin/hipcc -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_INSTALL_LIBDIR=lib -DAMDGPU_TARGETS=$(vopt_if gfx90a 'gfx90a:xnack+;gfx90a:xnack-;')$(vopt_if gfx940 'gfx940;')$(vopt_if gfx941 'gfx941;')$(vopt_if gfx942 'gfx942;')"
+configure_args="-B . -S ../hipBLASLt-rocm-${version} -DCMAKE_BUILD_TYPE=Release -DTensile_LIBRARY_FORMAT=msgpack -DTensile_COMPILER=hipcc -DTensile_TEST_LOCAL_PATH=../Tensile-rocm-${version} -DBUILD_WITH_TENSILE=OFF -DTensile_CPU_THREADS=${XBPS_MAKEJOBS} -DCMAKE_CXX_COMPILER=/opt/rocm/bin/hipcc -DCMAKE_C_COMPILER=/opt/rocm/bin/hipcc -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_INSTALL_LIBDIR=lib -DAMDGPU_TARGETS=$(vopt_if gfx90a 'gfx90a:xnack+;gfx90a:xnack-;')$(vopt_if gfx940 'gfx940;')$(vopt_if gfx941 'gfx941;')$(vopt_if gfx942 'gfx942;')"
 make_build_args="-j1"
 hostmakedepends="rocm-llvm hipamd git python3-virtualenv msgpack-devel"
 makedepends="rocm-cmake hipBLAS"
@@ -14,8 +14,10 @@ maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
 license="MIT"
 homepage="https://github.com/ROCm/hipBLASLt"
 changelog="https://github.com/ROCm/hipBLASLt/raw/develop/CHANGELOG.md"
-distfiles="https://github.com/ROCmSoftwarePlatform/hipBLASLt/archive/rocm-${version}.tar.gz"
-checksum=e281a1a7760fab8c3e0baafe17950cf43c422184e3226e3c14eb06e50c69d421
+distfiles="https://github.com/ROCmSoftwarePlatform/hipBLASLt/archive/rocm-${version}.tar.gz>hipblaslt.tar.gz
+https://github.com/ROCmSoftwarePlatform/Tensile/archive/rocm-6.0.0.tar.gz>tensile.tar.gz"
+checksum="90fc2f2c9e11c87e0529e824e4b0561dbc850f8ffa21be6932ae63cbaa27cdf0
+69bfdc711d3a86e6651b1dcfb2c461c7d3ae574e6d884833d4e07d3e7ad06491"
 LDFLAGS=-L/opt/rocm/lib
 
 build_options="gfx90a gfx940 gfx941 gfx942"

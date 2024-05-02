@@ -1,6 +1,6 @@
 # Template file for 'ROCR-Runtime'
 pkgname=ROCR-Runtime
-version=6.0.2
+version=6.1.0
 revision=1
 archs="x86_64"
 build_style=cmake
@@ -13,4 +13,4 @@ maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
 license="NCSA"
 homepage="https://github.com/RadeonOpenCompute/ROCR-Runtime"
 distfiles="https://github.com/RadeonOpenCompute/ROCR-Runtime/archive/rocm-${version}.tar.gz"
-checksum=e7ff4d7ac35a2dd8aad1cb40b96511a77a9c23fe4d1607902328e53728e05c28
+checksum=50386ebcb7ff24449afa2a10c76a059597464f877225c582ba3e097632a43f9c

@@ -1,9 +1,9 @@
 # Template file for 'hsa-amd-aqlprofile-bin'
 pkgname=hsa-amd-aqlprofile-bin
 _major_ver=6
-_minor_ver=0
-_patch_ver=2
-_magic_ver=115
+_minor_ver=1
+_patch_ver=0
+_magic_ver=82
 version=${_major_ver}.${_minor_ver}.${_patch_ver}
 revision=1
 archs="x86_64"
@@ -13,8 +13,8 @@ maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
 license="custom:Proprietary"
 homepage="https://docs.amd.com"
 distfiles="http://repo.radeon.com/rocm/apt/${_major_ver}.${_minor_ver}/pool/main/h/hsa-amd-aqlprofile${version}/hsa-amd-aqlprofile${version}_1.0.0.${_major_ver}0${_minor_ver}00.${_major_ver}0${_minor_ver}00-${_magic_ver}~22.04_amd64.deb"
-distfiles="https://repo.radeon.com/rocm/apt/${_major_ver}.${_minor_ver}.${_patch_ver}/pool/main/h/hsa-amd-aqlprofile/hsa-amd-aqlprofile_1.0.0.${_major_ver}0${_minor_ver}0${_patch_ver}.${_major_ver}0${_minor_ver}0${_patch_ver}-${_magic_ver}~22.04_amd64.deb"
-checksum=d1778a50a6a87f9a52312fd480bc2e9810c1620c87fe909ec7d8d58942843576
+#distfiles="https://repo.radeon.com/rocm/apt/${_major_ver}.${_minor_ver}.${_patch_ver}/pool/main/h/hsa-amd-aqlprofile/hsa-amd-aqlprofile_1.0.0.${_major_ver}0${_minor_ver}0${_patch_ver}.${_major_ver}0${_minor_ver}0${_patch_ver}-${_magic_ver}~22.04_amd64.deb"
+checksum=e9ea8800884849434397ef208c2fd648756709b1dcc9e875a0b7825cd9b106dd
 
 do_install() {
 	cd rocm-${version}

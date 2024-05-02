@@ -1,21 +1,19 @@
 # Template file for 'rocm-llvm-openmp'
 pkgname=rocm-llvm-openmp
-version=6.0.2
+version=6.1.0
 revision=1
 archs="x86_64"
 build_style=cmake
-configure_args="-B . -S ../llvm-project-rocm-${version}/openmp -DCMAKE_C_COMPILER=/opt/rocm/lib/llvm/bin/clang -DCMAKE_CXX_COMPILER=/opt/rocm/lib/llvm/bin/clang++ -DOPENMP_ENABLE_LIBOMPTARGET=1 -DCMAKE_INSTALL_PREFIX=/opt/rocm/lib/llvm -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_PREFIX_PATH=/opt/rocm -DLIBOMP_COPY_EXPORTS=OFF -DDEVICELIBS_ROOT=/builddir/${pkgname}-${version}/ROCm-Device-Libs-rocm-${version}/ -DLLVM_DIR=/opt/rocm/lib/llvm -DLLVM_MAIN_INCLUDE_DIR=/builddir/${pkgname}-${version}/llvm-project-rocm-${version}/llvm/include -DLIBOMPTARGET_LLVM_INCLUDE_DIRS=/builddir/${pkgname}-${version}/llvm-project-rocm-${version}/llvm/include -DLIBOMPTARGET_ENABLE_DEBUG=ON -DCMAKE_BUILD_TYPE=Release -DLIBOMPTARGET_AMDGCN_GFXLIST=$(vopt_if gfx803 'gfx803;')$(vopt_if gfx900 'gfx900;')$(vopt_if gfx906 'gfx906;')$(vopt_if gfx908 'gfx908;')$(vopt_if gfx90a 'gfx90a;')$(vopt_if gfx940 'gfx940;')$(vopt_if gfx941 'gfx941;')$(vopt_if gfx942 'gfx942;')$(vopt_if gfx1010 'gfx1010;')$(vopt_if gfx1011 'gfx1011;')$(vopt_if gfx1012 'gfx1012;')$(vopt_if gfx1030 'gfx1030;')$(vopt_if gfx1031 'gfx1031;')$(vopt_if gfx1100 'gfx1100;')$(vopt_if gfx1101 'gfx1101;')$(vopt_if gfx1102 'gfx1102;')"
-hostmakedepends="rocm-llvm python3 perl"
+configure_args="-B . -S ../openmp -DCMAKE_C_COMPILER=/opt/rocm/lib/llvm/bin/clang -DCMAKE_CXX_COMPILER=/opt/rocm/lib/llvm/bin/clang++ -DLLVM_ENABLE_PROJECTS=openmp -DOPENMP_ENABLE_LIBOMPTARGET=1 -DCMAKE_INSTALL_PREFIX=/opt/rocm/lib/llvm -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_PREFIX_PATH=/opt/rocm -DLIBOMP_COPY_EXPORTS=OFF -DDEVICELIBS_ROOT=/builddir/${pkgname}-${version}/amd/device-libs -DLLVM_DIR=/opt/rocm/lib/llvm -DLLVM_MAIN_INCLUDE_DIR=/builddir/${pkgname}-${version}/llvm/include -DLIBOMPTARGET_LLVM_INCLUDE_DIRS=/builddir/${pkgname}-${version}/llvm/include -DLIBOMP_ENABLE_SHARED=YES -DLIBOMP_INSTALL_ALIASES=YES -DLIBOMPTARGET_ENABLE_DEBUG=ON -DCMAKE_BUILD_TYPE=Release -DLIBOMPTARGET_AMDGCN_GFXLIST=$(vopt_if gfx803 'gfx803;')$(vopt_if gfx900 'gfx900;')$(vopt_if gfx906 'gfx906;')$(vopt_if gfx908 'gfx908;')$(vopt_if gfx90a 'gfx90a;')$(vopt_if gfx940 'gfx940;')$(vopt_if gfx941 'gfx941;')$(vopt_if gfx942 'gfx942;')$(vopt_if gfx1010 'gfx1010;')$(vopt_if gfx1011 'gfx1011;')$(vopt_if gfx1012 'gfx1012;')$(vopt_if gfx1030 'gfx1030;')$(vopt_if gfx1031 'gfx1031;')$(vopt_if gfx1100 'gfx1100;')$(vopt_if gfx1101 'gfx1101;')$(vopt_if gfx1102 'gfx1102;')"
+hostmakedepends="rocm-llvm python3 perl hipamd"
 makedepends="python3-devel zlib zlib-devel libffi libffi-devel pkg-config ROCm-Device-Libs rocm-cmake ROCR-Runtime libdrm-devel libnuma-devel ROCT-Thunk-Interface"
 depends="ROCm-core"
 short_desc="LLVM OpenMP support library for ROCm"
 maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
 license="Apache-2.0 WITH LLVM-exception"
 homepage="https://github.com/RadeonOpenCompute/llvm-project"
-distfiles="https://github.com/RadeonOpenCompute/llvm-project/archive/rocm-${version}.tar.gz>rocm-llvm.tar.gz
-https://github.com/RadeonOpenCompute/ROCm-Device-Libs/archive/rocm-${version}.tar.gz>rocm-device-libs.tar.gz"
-checksum="7d35acc84de1adee65406f92a369a30364703f84279241c444cd93a48c7eeb76
-c6d88b9b46e39d5d21bd5a0c1eba887ec473a370b1ed0cebd1d2e910eedc5837"
+distfiles="https://github.com/RadeonOpenCompute/llvm-project/archive/rocm-${version}.tar.gz"
+checksum="6bd9912441de6caf6b26d1323e1c899ecd14ff2431874a2f5883d3bc5212db34"
 # Build fails without this :/
 nopie=yes
 LDFLAGS=-L/opt/rocm/lib
@@ -25,5 +23,5 @@ build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx940 gfx941 gfx942 gfx1010 g
 build_options_default="gfx803 gfx900 gfx906 gfx908 gfx90a gfx940 gfx941 gfx942 gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"
 
 post_install() {
-	vlicense llvm-project-rocm-${version}/openmp/LICENSE.TXT
+	vlicense openmp/LICENSE.TXT
 }

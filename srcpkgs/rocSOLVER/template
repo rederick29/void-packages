@@ -1,6 +1,6 @@
 # Template file for 'rocSOLVER'
 pkgname=rocSOLVER
-version=6.0.2
+version=6.1.0
 revision=1
 archs="x86_64"
 build_style=cmake
@@ -14,7 +14,7 @@ license="BSD-2-Clause"
 homepage="https://github.com/ROCmSoftwarePlatform/rocSOLVER"
 changelog="https://github.com/ROCmSoftwarePlatform/rocSOLVER/raw/develop/CHANGELOG.md"
 distfiles="https://github.com/ROCmSoftwarePlatform/rocSOLVER/archive/rocm-${version}.tar.gz"
-checksum=781d5df2886ab0d5087a215a33ac390dd27653b2a9b4a620c7d51b0ae56f63d2
+checksum=f1d7a4edf14ed0b2e2f74aa5cbc9db0c3b0dd31e50bbada1586cb353a28fe015
 LDFLAGS=-L/opt/rocm/lib
 
 build_options="gfx803 gfx900 gfx906 gfx908 gfx90a gfx940 gfx941 gfx942 gfx1010 gfx1011 gfx1012 gfx1030 gfx1031 gfx1100 gfx1101 gfx1102"

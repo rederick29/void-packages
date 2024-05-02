@@ -1,10 +1,10 @@
 # Template file for 'ROCm-CompilerSupport'
 pkgname=ROCm-CompilerSupport
-version=6.0.2
+version=6.1.0
 revision=1
 archs="x86_64"
 build_style=cmake
-configure_args="-B . -S ../lib/comgr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/rocm -DBUILD_TESTING=ON -DCMAKE_PREFIX_PATH=/opt/rocm/llvm -DCMAKE_INSTALL_LIBDIR=lib"
+configure_args="-B . -S ../amd/comgr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/rocm -DBUILD_TESTING=ON -DCMAKE_PREFIX_PATH=/opt/rocm/llvm -DCMAKE_INSTALL_LIBDIR=lib"
 make_check_target="check-comgr"
 hostmakedepends="pkg-config rocm-llvm"
 makedepends="ROCm-Device-Libs rocm-cmake zlib-devel"
@@ -12,6 +12,6 @@ depends="ROCm-core"
 short_desc="Compiler support library for ROCm LLVM"
 maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
 license="NCSA"
-homepage="https://github.com/RadeonOpenCompute/ROCm-CompilerSupport"
-distfiles="https://github.com/RadeonOpenCompute/ROCm-CompilerSupport/archive/rocm-${version}.tar.gz"
-checksum=737b110d9402509db200ee413fb139a78369cf517453395b96bda52d0aa362b9
+homepage="https://github.com/ROCm/ROCm-CompilerSupport"
+distfiles="https://github.com/ROCm/llvm-project/archive/rocm-${version}.tar.gz"
+checksum=6bd9912441de6caf6b26d1323e1c899ecd14ff2431874a2f5883d3bc5212db34

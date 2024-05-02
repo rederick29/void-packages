@@ -1,6 +1,7 @@
 # Template file for 'FunctionalPlus'
 pkgname=FunctionalPlus
-version=0.2.22
+# MIOpen 6.1.0 wants this version 0.2.18-p0
+version=0.2.24
 revision=1
 build_style=cmake
 short_desc="Functional Programming Library for C++"
@@ -9,7 +10,7 @@ license="BSL-1.0"
 homepage="https://github.com/Dobiasd/FunctionalPlus"
 changelog="https://github.com/Dobiasd/FunctionalPlus/releases"
 distfiles="https://github.com/Dobiasd/FunctionalPlus/archive/v${version}.tar.gz"
-checksum=79378668dff6ffa8abc1abde2c2fe37dc6fe1ac040c55d5ee7886924fa6a1376
+checksum=446c63ac3f2045e7587f694501882a3d7c7b962b70bcc08deacf5777bdaaff8c
 
 post_install() {
 	vlicense LICENSE

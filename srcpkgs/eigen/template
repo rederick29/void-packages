@@ -1,5 +1,8 @@
 # Template file for 'eigen'
 pkgname=eigen
+# Note: `MIOpen` wants this package to be version 3.4.0
+# however, as there are other programs using this, I am not bumping
+# this in my ROCm branch.
 version=3.3.9
 revision=1
 build_style=cmake

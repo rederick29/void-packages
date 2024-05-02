@@ -4,9 +4,9 @@
 # You can work out the magic version from https://repo.radeon.com/rocm/apt/
 pkgname=ROCm-core
 _major_ver=6
-_minor_ver=0
-_patch_ver=2
-_magic_ver=115
+_minor_ver=1
+_patch_ver=0
+_magic_ver=82
 version=${_major_ver}.${_minor_ver}.${_patch_ver}
 revision=1
 archs="x86_64"

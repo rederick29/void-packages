@@ -1,6 +1,6 @@
 # Template file for 'rccl'
 pkgname=rccl
-version=6.0.2
+version=6.1.0
 revision=1
 archs="x86_64"
 build_style=cmake
@@ -14,7 +14,7 @@ license="custom:Proprietary"
 homepage="https://github.com/ROCmSoftwarePlatform/rccl"
 changelog="https://github.com/ROCmSoftwarePlatform/rccl/raw/develop/CHANGELOG.md"
 distfiles="https://github.com/ROCmSoftwarePlatform/rccl/archive/rocm-${version}.tar.gz"
-checksum=5c8495acba3d620b751e729d1157e7b4eea8f5e5692c50ce47c5204d3dfd443c
+checksum=c6308f6883cbd63dceadbe4ee154cc6fa9e6bdccbd2f0fda295b564b0cf01e9a
 LDFLAGS=-L/opt/rocm/lib64
 
 # GPU architectures to build for

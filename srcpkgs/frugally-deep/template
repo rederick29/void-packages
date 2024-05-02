@@ -1,6 +1,8 @@
 # Template file for 'frugally-deep'
 pkgname=frugally-deep
-version=0.15.30
+# MIOpen 6.1.0 wants commit 9683d557eb672ee2304f80f6682c51242d748a50
+# I don't think there were any breaking changes since, so a newer version should be ok
+version=0.15.31
 revision=1
 build_style=cmake
 makedepends="FunctionalPlus eigen json-c++"
@@ -11,7 +13,7 @@ license="MIT"
 homepage="https://github.com/Dobiasd/frugally-deep"
 changelog="https://github.com/Dobiasd/frugally-deep/releases"
 distfiles="https://github.com/Dobiasd/frugally-deep/archive/v${version}.tar.gz"
-checksum=8932f7b42612598402269a54f957af09084dc2cb812d32887d991d6e45b280fb
+checksum=49bf5e30ad2d33e464433afbc8b6fe8536fc959474004a1ce2ac03d7c54bc8ba
 
 post_install() {
 	vlicense LICENSE

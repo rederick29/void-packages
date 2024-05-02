@@ -1,6 +1,6 @@
 # Template file for 'roctracer'
 pkgname=roctracer
-version=6.0.2
+version=6.1.0
 revision=1
 archs="x86_64"
 build_style=cmake
@@ -12,7 +12,7 @@ maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
 license="MIT"
 homepage="https://github.com/ROCm-Developer-Tools/roctracer"
 distfiles="https://github.com/ROCm-Developer-Tools/roctracer/archive/rocm-${version}.tar.gz"
-checksum=1e0105b32fdd9c010aab304bb2ca1a5a38ba323cea610afe1135657edda8f26e
+checksum=3f8e296c4d04123a7177d815ca166e978b085ad7c816ac298e6bb47a299fa187
 LDFLAGS=" -Wl,--enable-new-dtags -Wl,--rpath,/opt/rocm/lib"
 
 post_install() {

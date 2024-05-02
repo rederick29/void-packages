@@ -1,6 +1,6 @@
 # Template file for 'rocprofiler'
 pkgname=rocprofiler
-version=6.0.2
+version=6.1.0
 revision=1
 archs="x86_64"
 build_style=cmake
@@ -12,7 +12,7 @@ maintainer="Erick Vilcica <erick.vilcica@protonmail.com>"
 license="MIT"
 homepage="https://github.com/ROCm-Developer-Tools/rocprofiler"
 distfiles="https://github.com/ROCm-Developer-Tools/rocprofiler/archive/rocm-${version}.tar.gz"
-checksum=d3f24e639a5e151fa418a92ae6fe150bdf14120b8982a5baa52844ce2fba0b82
+checksum=14ac0a451428465133583e83d9177ed34b3d4679515018a12ee74f5e0288c956
 replaces="rocprofiler-v2"
 
 CXXFLAGS="${CXXFLAGS} -Wno-non-c-typedef-for-linkage -Wno-missing-braces -Wno-unused-variable -Wno-unused-function -Wno-sometimes-uninitialized -Wno-unused-private-field -Wno-#warnings"
@@ -25,6 +25,7 @@ do_configure() {
 	cmake \
 	-G "Unix Makefiles" \
 	-B build \
+	-Wno-dev \
 	-DCMAKE_BUILD_TYPE=Release \
 	-DROCPROFILER_BUILD_CI=0 \
 	-DROCPROFILER_BUILD_TESTS=0 \
